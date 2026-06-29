@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { usePathname } from "next/navigation"
 
 import {
   SidebarGroup,
@@ -25,6 +26,8 @@ export function NavSecondary({
     onClick?: () => void
   }[]
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+  const pathname = usePathname()
+
   return (
     <SidebarGroup {...props}>
       <SidebarSeparator className="-mx-2 mb-2" />
@@ -38,7 +41,7 @@ export function NavSecondary({
                   <span>{item.title}</span>
                 </SidebarMenuButton>
               ) : (
-                <SidebarMenuButton asChild tooltip={item.title}>
+                <SidebarMenuButton asChild tooltip={item.title} isActive={pathname === item.url}>
                   <Link href={item.url}>
                     {item.icon}
                     <span>{item.title}</span>

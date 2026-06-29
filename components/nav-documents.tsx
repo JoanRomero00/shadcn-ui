@@ -1,5 +1,6 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -21,6 +22,7 @@ export function NavDocuments({
   }[]
 }) {
   const { isMobile } = useSidebar()
+  const pathname = usePathname()
 
   return (
     <SidebarGroup>
@@ -30,7 +32,7 @@ export function NavDocuments({
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild tooltip={item.fullName || item.name} className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground/90">
+            <SidebarMenuButton asChild tooltip={item.fullName || item.name} className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground/90" isActive={pathname === item.url}>
               <Link href={item.url}>
                 {item.icon}
                 <span className="truncate" title={item.fullName || item.name}>
