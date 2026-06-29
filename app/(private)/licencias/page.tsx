@@ -1,4 +1,4 @@
-import { SiteHeader } from "@/components/site-header"
+import { SiteHeader } from "@/components/layout/site-header"
 import { FileCheck } from "lucide-react"
 
 export const metadata = {

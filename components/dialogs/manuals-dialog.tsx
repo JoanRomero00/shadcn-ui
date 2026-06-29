@@ -33,7 +33,7 @@ export function ManualsDialog({ isOpen, onClose }: ManualsDialogProps) {
       onClick={onClose}
     >
       <div 
-        className="relative max-w-md w-full mx-4 bg-background rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+        className="relative max-w-md w-full mx-4 bg-card rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

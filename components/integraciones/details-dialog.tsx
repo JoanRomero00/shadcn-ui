@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { StatusBadge } from "@/components/status-badge"
+import { StatusBadge } from "@/components/table/status-badge"
 import { toast } from "sonner"
 import {
   Copy,

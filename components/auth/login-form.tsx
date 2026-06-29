@@ -44,7 +44,7 @@ export function LoginForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* suario */}
+        {/* Usuario */}
         <div className="space-y-2">
           <Label className="text-foreground font-medium">
             Usuario

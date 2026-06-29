@@ -1,4 +1,4 @@
-import { SiteHeader } from "@/components/site-header"
+import { SiteHeader } from "@/components/layout/site-header"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"

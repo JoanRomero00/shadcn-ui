@@ -1,4 +1,4 @@
-import { SiteHeader } from "@/components/site-header"
+import { SiteHeader } from "@/components/layout/site-header"
 import { Users } from "lucide-react"
 
 export const metadata = {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { LoginForm } from "@/components/login-form"
-import { LoginThemeToggle } from "@/components/login-theme-toggle"
+import { LoginForm } from "@/components/auth/login-form"
+import { LoginThemeToggle } from "@/components/auth/login-theme-toggle"
 import escudo from "@/public/escudo.gif"
 
 export const metadata: Metadata = {
