@@ -4,7 +4,12 @@ import * as React from "react"
 import { SiteHeader } from "@/components/layout/site-header"
 import { TableToolbar } from "@/components/table/table-toolbar"
 import { StatusBadge } from "@/components/table/status-badge"
-import { DetailsDialog, type IntegracionDetallada } from "@/components/integraciones/details-dialog"
+import dynamic from "next/dynamic"
+import { type IntegracionDetallada } from "@/components/integraciones/details-dialog"
+
+const DetailsDialog = dynamic(() => import("@/components/integraciones/details-dialog").then(mod => mod.DetailsDialog), {
+  ssr: false,
+})
 import { DataTable } from "@/components/table/data-table"
 import { type ColumnDef } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
@@ -28,10 +33,12 @@ import {
 } from "lucide-react"
 import { toast } from "sonner"
 import { integracionesMock } from "@/lib/mocks/integraciones"
+import { useDebounce } from "@/hooks/use-debounce"
 
 export default function IntegracionesPage() {
   // Estados para búsqueda y filtrado dinámico
   const [searchTerm, setSearchTerm] = React.useState("")
+  const debouncedSearchTerm = useDebounce(searchTerm, 300) // Retraso de 300ms para evitar lag en escritura
   const [presidenciaFilter, setPresidenciaFilter] = React.useState("camara-civil")
   const [anioFilter, setAnioFilter] = React.useState("todos")
 
@@ -56,7 +63,7 @@ export default function IntegracionesPage() {
   const showClearButton =
     searchTerm !== "" || presidenciaFilter !== "camara-civil" || anioFilter !== "todos"
 
-  // Lógica de filtrado en el cliente
+  // Lógica de filtrado en el cliente (basada en el valor debounced)
   const filteredData = React.useMemo(() => {
     return integracionesMock.filter((item) => {
       // Filtrar por Presidencia seleccionada
@@ -73,8 +80,8 @@ export default function IntegracionesPage() {
       const matchesAnio =
         anioFilter === "todos" ? true : item.fecha.startsWith(anioFilter)
 
-      // Filtrar por texto de búsqueda (CUIJ, carátula, nro integración o nro expediente)
-      const query = searchTerm.toLowerCase().trim()
+      // Filtrar por texto de búsqueda (usando el término debounced)
+      const query = debouncedSearchTerm.toLowerCase().trim()
       const matchesSearch =
         query === ""
           ? true
@@ -85,7 +92,7 @@ export default function IntegracionesPage() {
 
       return matchesPresidencia && matchesAnio && matchesSearch
     })
-  }, [searchTerm, presidenciaFilter, anioFilter])
+  }, [debouncedSearchTerm, presidenciaFilter, anioFilter])
 
   // Configuración de las columnas de la tabla genérica
   const columns = React.useMemo<ColumnDef<IntegracionDetallada>[]>(

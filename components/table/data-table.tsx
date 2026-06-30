@@ -64,6 +64,30 @@ export function DataTable<TData, TValue>({
   const startIndex = paginationState.pageIndex * paginationState.pageSize
   const endIndex = Math.min(startIndex + paginationState.pageSize, totalRows)
 
+  // Genera los números de página a mostrar (anterior, actual, siguiente y ellipsis si corresponde)
+  const getCanonicPageNumbers = () => {
+    const pageCount = table.getPageCount()
+    const currentPage = paginationState.pageIndex
+    const pages: (number | string)[] = []
+
+    const start = Math.max(0, currentPage - 1)
+    const end = Math.min(pageCount - 1, currentPage + 1)
+
+    if (start > 0) {
+      pages.push("ellipsis-start")
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i)
+    }
+
+    if (end < pageCount - 1) {
+      pages.push("ellipsis-end")
+    }
+
+    return pages
+  }
+
   return (
     <div className="max-h-full flex flex-col min-h-0 rounded-xl border border-muted bg-card overflow-hidden shadow-xs w-full">
       <div className="flex-1 overflow-auto relative">
@@ -195,10 +219,21 @@ export function DataTable<TData, TValue>({
             <span className="sr-only">Página anterior</span>
           </Button>
 
-          {/* Páginas Numéricas */}
-          {Array.from({ length: table.getPageCount() }).map((_, idx) => {
-            const pageNum = idx + 1
-            const isActive = paginationState.pageIndex === idx
+          {/* Páginas Numéricas con Ventana Flotante */}
+          {getCanonicPageNumbers().map((page, idx) => {
+            if (typeof page === "string") {
+              return (
+                <span
+                  key={page + idx}
+                  className="px-1.5 text-muted-foreground select-none font-medium"
+                >
+                  ...
+                </span>
+              )
+            }
+
+            const pageNum = page + 1
+            const isActive = paginationState.pageIndex === page
             return (
               <Button
                 key={pageNum}
@@ -207,7 +242,7 @@ export function DataTable<TData, TValue>({
                 className={`size-8 cursor-pointer rounded-lg font-semibold ${
                   isActive ? "bg-primary text-primary-foreground hover:bg-primary/95" : ""
                 }`}
-                onClick={() => table.setPageIndex(idx)}
+                onClick={() => table.setPageIndex(page)}
               >
                 {pageNum}
               </Button>

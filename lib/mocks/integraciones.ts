@@ -1,6 +1,7 @@
-import { IntegracionDetallada } from "@/components/details-dialog"
+import { IntegracionDetallada } from "@/components/integraciones/details-dialog"
 
-export const integracionesMock: IntegracionDetallada[] = [
+// Registros base (25 casos reales cargados estáticamente)
+const baseRecords: IntegracionDetallada[] = [
   {
     nroInte: "2026/041",
     fecha: "2026-06-22",
@@ -557,3 +558,177 @@ export const integracionesMock: IntegracionDetallada[] = [
     documentos: [{ nombre: "Demanda previsional abogados Forense.pdf", size: "2.1 MB" }]
   }
 ]
+
+// Listas para la generación aleatoria de registros adicionales
+const salas = [
+  "Sala I - Civil y Comercial",
+  "Sala II - Civil y Comercial",
+  "Sala III - Civil y Comercial",
+  "Cámara de Distrito Laboral - Sala I",
+  "Cámara en lo Penal - Sala I"
+]
+
+const tipos = [
+  "Integración de Sala",
+  "Integración por Excusa",
+  "Integración por Recusación"
+]
+
+const secretariosList = ["Dra. Claudia de la Vega", "Dr. Juan Manuel Romero", "Dr. Carlos Maidana"]
+const circunscripcionesList = ["Circunscripción Nro 1 - Santa Fe", "Circunscripción Nro 2 - Rosario"]
+const vocalesPool = [
+  "Dr. Eduardo Spuler",
+  "Dra. María Angélica Gastaldi",
+  "Dr. Rafael Gutiérrez",
+  "Dr. Daniel Erbetta",
+  "Dr. Roberto Falistocco",
+  "Dr. Mario Netri"
+]
+
+const plaintiffs = ["Gómez", "Rodríguez", "Fernández", "López", "Martínez", "Pérez", "González", "Sánchez", "Díaz", "Romero", "Álvarez", "Ruiz", "Torres", "Suárez", "Herrera", "Vázquez", "Giménez", "Castro", "Mendoza", "Bustamante", "Sosa", "Ortiz", "Silva", "Medina", "Flores"]
+const defendants = ["Provincia de Santa Fe", "Nuevo Banco de Santa Fe", "EPE (Empresa Provincial de la Energía)", "Litoral Gas", "Municipalidad de Santa Fe", "Municipalidad de Rosario", "Telecom Argentina", "Caja de Jubilaciones", "Cervecería Santa Fe", "Aseguradora del Litoral", "Caja Forense", "Sanatorio Santa Fe", "Cooperativa Lehmann"]
+const actions = [
+  "s/ Daños y Perjuicios",
+  "s/ Recurso de Inconstitucionalidad",
+  "s/ Amparo de Salud",
+  "s/ Quiebra",
+  "s/ Concurso Preventivo",
+  "s/ Apremio Fiscal",
+  "s/ Cobro de Pesos",
+  "s/ Incidente de Apelación",
+  "s/ Medida Cautelar",
+  "s/ Recurso Contencioso Administrativo",
+  "s/ Ley de Defensa del Consumidor",
+  "s/ Amparo Colectivo Ambiental"
+]
+
+// Generador pseudoaleatorio local determinista sin variables globales
+// para garantizar total consistencia en la generación SSR y cliente
+function generateRandomRecord(year: number, sequenceNumber: number): IntegracionDetallada {
+  // Inicializamos una semilla local única basada en el año y número de secuencia
+  let localSeed = year * 10000 + sequenceNumber
+  
+  const pseudoRandom = () => {
+    const x = Math.sin(localSeed++) * 10000
+    return x - Math.floor(x)
+  }
+
+  const getRandomElement = <T>(arr: T[]): T => arr[Math.floor(pseudoRandom() * arr.length)]
+  const getRandomInt = (min: number, max: number): number => Math.floor(pseudoRandom() * (max - min + 1)) + min
+
+  const generateRandomCUIJ = () => {
+    const part1 = getRandomInt(20, 25)
+    const part2 = String(getRandomInt(1000000, 99999999)).padStart(8, '0')
+    const part3 = getRandomInt(0, 9)
+    return `${part1}-${part2}-${part3}`
+  }
+
+  const nroInte = `${year}/${String(sequenceNumber).padStart(3, '0')}`
+  const month = String(getRandomInt(1, 12)).padStart(2, '0')
+  const day = String(getRandomInt(1, 28)).padStart(2, '0')
+  const fecha = `${year}-${month}-${day}`
+  
+  const sala = getRandomElement(salas)
+  const cuijExpe = generateRandomCUIJ()
+  const nroExpe = `${getRandomInt(1, 500)}/${year - getRandomInt(0, 2)}`
+  
+  const plaintiff = getRandomElement(plaintiffs)
+  const defendant = getRandomElement(defendants)
+  const action = getRandomElement(actions)
+  const caratula = `${plaintiff} c/ ${defendant} ${action}`
+  
+  const tipo = getRandomElement(tipos)
+  
+  // Asignación probabilística del estado usando el generador local determinista
+  const stateRand = pseudoRandom()
+  let estado = "Completado"
+  if (stateRand < 0.12) estado = "Pendiente"
+  else if (stateRand < 0.22) estado = "En Firma"
+  else if (stateRand < 0.24) estado = "Error"
+  
+  const circunscripcion = getRandomElement(circunscripcionesList)
+  const secretario = getRandomElement(secretariosList)
+  const motivo = `Integración correspondiente al trámite ordinario de la causa por sorteo automatizado reglamentario de vocales en periodo de subrogancias.`
+  
+  // Selección de 3 vocales aleatorios usando el generador local determinista
+  const shuffledVocales = [...vocalesPool].sort(() => 0.5 - pseudoRandom())
+  const selectedVocales = shuffledVocales.slice(0, 3)
+  
+  const vocales = selectedVocales.map((nombre, index) => {
+    let firma: "Completada" | "Pendiente" | "Excusado" = "Completada"
+    let fechaFirma: string | undefined = `${fecha} ${String(getRandomInt(9, 17)).padStart(2, '0')}:${String(getRandomInt(0, 59)).padStart(2, '0')}`
+    
+    if (estado === "Pendiente") {
+      firma = index === 0 ? "Completada" : "Pendiente"
+      if (firma === "Pendiente") fechaFirma = undefined
+    } else if (estado === "En Firma") {
+      firma = index < 2 ? "Completada" : "Pendiente"
+      if (firma === "Pendiente") fechaFirma = undefined
+    } else if (estado === "Error") {
+      firma = "Pendiente"
+      fechaFirma = undefined
+    }
+    
+    // Posibilidad aleatoria de excusado en registros completados usando generador local determinista
+    if (pseudoRandom() < 0.06 && estado === "Completado") {
+      firma = "Excusado"
+      fechaFirma = undefined
+    }
+    
+    return { nombre, firma, fechaFirma }
+  })
+  
+  const historial = [
+    { fecha: `${fecha} 08:30`, accion: "Sorteo y asignación de vocales", usuario: "Sistema" }
+  ]
+  if (estado === "Completado") {
+    historial.push({ fecha: `${fecha} 12:00`, accion: "Registros e inserción de resoluciones", usuario: "Mesa de Entradas" })
+  }
+  
+  const documentos = [
+    { nombre: `Acta Sorteo Integración ${year}-${String(sequenceNumber).padStart(3, '0')}.pdf`, size: `${(pseudoRandom() * 2 + 0.3).toFixed(1)} MB` }
+  ]
+  
+  return {
+    nroInte,
+    fecha,
+    sala,
+    cuijExpe,
+    nroExpe,
+    caratula,
+    tipo,
+    estado,
+    circunscripcion,
+    secretario,
+    motivo,
+    vocales,
+    historial,
+    documentos
+  }
+}
+
+// Bucle para generar c. 225 registros adicionales
+const generatedRecords: IntegracionDetallada[] = []
+
+// 1. Restantes de 2026: del 016 al 001
+for (let i = 16; i >= 1; i--) {
+  generatedRecords.push(generateRandomRecord(2026, i))
+}
+
+// 2. Registros de 2025: del 160 al 001
+for (let i = 160; i >= 1; i--) {
+  generatedRecords.push(generateRandomRecord(2025, i))
+}
+
+// 3. Registros de 2024: del 50 al 001
+for (let i = 50; i >= 1; i--) {
+  generatedRecords.push(generateRandomRecord(2024, i))
+}
+
+// Exportamos todos los registros ordenados por número de integración (año/correlativo descendente)
+export const integracionesMock: IntegracionDetallada[] = [...baseRecords, ...generatedRecords].sort((a, b) => {
+  const [yearA, seqA] = a.nroInte.split('/').map(Number)
+  const [yearB, seqB] = b.nroInte.split('/').map(Number)
+  if (yearA !== yearB) return yearB - yearA
+  return seqB - seqA
+})

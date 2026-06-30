@@ -15,8 +15,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { HelpDialog } from "@/components/dialogs/help-dialog"
-import { ManualsDialog } from "@/components/dialogs/manuals-dialog"
+import dynamic from "next/dynamic"
+
+const HelpDialog = dynamic(() => import("@/components/dialogs/help-dialog").then(mod => mod.HelpDialog), {
+  ssr: false,
+})
+const ManualsDialog = dynamic(() => import("@/components/dialogs/manuals-dialog").then(mod => mod.ManualsDialog), {
+  ssr: false,
+})
 import Image from "next/image"
 import { siteConfig } from "@/config/site"
 
