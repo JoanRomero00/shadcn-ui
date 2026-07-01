@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sistema Base
 
-## Getting Started
+Este proyecto es el panel de control de administración y frontend para el **Sistema de Integraciones**. 
 
-First, run the development server:
+Está construido con **React 19, Next.js 16 (App Router), Tailwind CSS v4, y Shadcn UI** utilizando el estilo moderno `radix-nova`.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Características Principales
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+*   **Autenticación Stateless JWT**: Flujo de inicio de sesión seguro y stateless integrado con el backend de Symfony.
+*   **Formularios con Shadcn UI & Zod**: Formulario de login integrado con validación de datos en cliente y captura dinámica de errores de API (e.g., `401` Credenciales Inválidas y `429` Límite de Intentos Superado).
+*   **Persistencia de Sesión**: Soporte para recordar el nombre de usuario y almacenamiento automático de tokens en `localStorage`.
+*   **Clientes API y Tipos Autogenerados**: Integración robusta mediante `@hey-api/openapi-ts` para compilar automáticamente el SDK de TypeScript directamente del esquema OpenAPI expuesto por el backend.
+*   **Vistas Protegidas**: Pantalla de usuarios que consume recursos seguros bajo `/api/*` inyectando automáticamente la cabecera `Authorization: Bearer <token>` a través de interceptores.
+*   **Navegación e Interfaz**: Barra lateral (Sidebar) colapsable, estructura de layouts privados, notificaciones con Sonner y componentes de tabla accesibles.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Stack Tecnológico
 
-To learn more about Next.js, take a look at the following resources:
+*   **Framework**: Next.js 16 (App Router) & React 19
+*   **Lenguaje**: TypeScript
+*   **Estilos y UI**: Tailwind CSS v4, Shadcn UI (`radix-nova`), Radix UI
+*   **Formularios**: React Hook Form & Zod Resolver
+*   **Consumo API**: `@hey-api/client-fetch` & `@hey-api/openapi-ts`
+*   **Iconos**: Lucide React
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la interfaz corriendo.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚙️ Configuración y Levantamiento del Frontend
+
+Para que la comunicación con la API funcione correctamente, **el backend en Symfony debe estar previamente en ejecución** (por defecto configurado en `http://localhost:8000`).
+
+Una vez que el backend esté activo, sigue estos pasos para levantar la interfaz:
+
+1. **Instalar Dependencias**:
+   ```bash
+   npm install
+   ```
+
+2. **Generar el Cliente API y los Tipos**:
+   Este comando lee el esquema de OpenAPI del backend y compila el SDK de servicios y tipos de TypeScript en `lib/api/generated`:
+   ```bash
+   npm run openapi-ts
+   ```
+   *Nota: Se debe re-ejecutar este comando siempre que se realicen cambios o adiciones en los endpoints del backend.*
+
+3. **Iniciar el Servidor de Desarrollo**:
+   ```bash
+   npm run dev
+   ```
+   Por defecto, la aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
+
+

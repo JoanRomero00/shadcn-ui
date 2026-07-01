@@ -61,6 +61,11 @@ export const siteConfig: SiteConfig = {
       icon: <Users className="size-4" />,
     },
     {
+      title: "Usuarios",
+      url: "/usuarios",
+      icon: <Users className="size-4" />,
+    },
+    {
       title: "Licencias",
       url: "/licencias",
       icon: <FileCheck className="size-4" />,
