@@ -9,6 +9,9 @@ import {
   Settings2,
   BookOpen,
   HelpCircle,
+  Scale,
+  Tags,
+  Building2,
 } from "lucide-react"
 import escudo from "@/public/escudo.gif"
 
@@ -74,6 +77,21 @@ export const siteConfig: SiteConfig = {
       title: "Expedientes",
       url: "/expedientes",
       icon: <Folder className="size-4" />,
+    },
+    {
+      title: "Fueros",
+      url: "/fueros",
+      icon: <Scale className="size-4" />,
+    },
+    {
+      title: "Tipos de Marca",
+      url: "/tipos-marca",
+      icon: <Tags className="size-4" />,
+    },
+    {
+      title: "Presidencias",
+      url: "/presidencias",
+      icon: <Building2 className="size-4" />,
     },
   ],
   documents: [

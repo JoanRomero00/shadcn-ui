@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { client } from "@/lib/api"
+import { loginCheckPost } from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { User, Lock, Eye, EyeOff, Loader2, AlertCircle } from "lucide-react"
+import { useAuth } from "@/components/auth/auth-provider"
 
 // Definición del esquema de validación Zod
 const loginSchema = z.object({
@@ -31,11 +32,19 @@ type LoginSchemaType = z.infer<typeof loginSchema>
 
 export function LoginForm() {
   const router = useRouter()
+  const { isAuthenticated, isLoading, login } = useAuth()
   const [showPassword, setShowPassword] = React.useState(false)
   const [apiError, setApiError] = React.useState<string | null>(null)
 
+  // Redirigir si ya está autenticado
+  React.useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.push("/integraciones")
+    }
+  }, [isLoading, isAuthenticated, router])
+
   // Inicializar React Hook Form con Zod resolver
-  const form = useForm<LoginSchemaType>({
+  const form = useForm<any>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       username: "",
@@ -61,9 +70,8 @@ export function LoginForm() {
   const onSubmit = async (values: LoginSchemaType) => {
     setApiError(null)
 
-    // Usamos el cliente configurado directamente para hacer el POST stateless /login
-    const { data, error, response } = await client.post<{ token: string }, { message?: string }>({
-      url: "/login",
+    // Usar la función loginCheckPost autogenerada y tipada del SDK
+    const { data, error, response } = await loginCheckPost({
       body: {
         username: values.username,
         password: values.password,
@@ -72,11 +80,9 @@ export function LoginForm() {
 
     // Capturar y manejar errores comunes de la API
     if (error) {
-      if (response.status === 401) {
+      if (response?.status === 401) {
         setApiError("Usuario o contraseña incorrectos.")
-        form.setError("username", { type: "manual", message: "Credenciales inválidas" })
-        form.setError("password", { type: "manual", message: "Credenciales inválidas" })
-      } else if (response.status === 429) {
+      } else if (response?.status === 429) {
         setApiError("Límite de peticiones de login superado. Por favor, intente más tarde.")
       } else {
         setApiError("Ha ocurrido un error al conectar con el servidor. Por favor, intente nuevamente.")
@@ -85,8 +91,8 @@ export function LoginForm() {
     }
 
     if (data?.token) {
-      // Guardar token JWT
-      localStorage.setItem("jwt_token", data.token)
+      // Guardar token JWT en el context (esto actualiza el estado y localStorage)
+      login(data.token)
 
       // Guardar/Limpiar recordar usuario
       if (values.rememberMe) {
@@ -98,6 +104,15 @@ export function LoginForm() {
       // Redirección exitosa
       router.push("/integraciones")
     }
+  }
+
+  if (isLoading || isAuthenticated) {
+    return (
+      <div className="w-full max-w-md bg-card text-card-foreground border border-border/85 rounded-2xl p-6 md:p-8 shadow-xl flex flex-col items-center justify-center min-h-[300px] space-y-4 mx-4">
+        <Loader2 className="h-8 w-8 animate-spin text-[#104b45] dark:text-[#2dd4bf]" />
+        <p className="text-sm text-muted-foreground animate-pulse">Redirigiendo al panel...</p>
+      </div>
+    )
   }
 
   return (
@@ -120,10 +135,10 @@ export function LoginForm() {
       )}
 
       <Form {...form}>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit as any)} className="space-y-4">
           {/* Campo Usuario */}
           <FormField
-            control={control}
+            control={control as any}
             name="username"
             render={({ field }) => (
               <FormItem>
@@ -147,7 +162,7 @@ export function LoginForm() {
 
           {/* Campo Contraseña */}
           <FormField
-            control={control}
+            control={control as any}
             name="password"
             render={({ field }) => (
               <FormItem>
@@ -192,7 +207,7 @@ export function LoginForm() {
 
           {/* Mantener sesión y recordar */}
           <FormField
-            control={control}
+            control={control as any}
             name="rememberMe"
             render={({ field }) => (
               <FormItem className="flex flex-row items-center gap-2 space-y-0 pt-1">

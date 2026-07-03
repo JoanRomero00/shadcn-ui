@@ -36,10 +36,10 @@ export function UsuarioList() {
         const { data, error, response } = await apiUsuariosGetCollection()
 
         if (error) {
-          if (response.status === 401) {
+          if (response?.status === 401) {
             setErrorMsg("No autorizado. Su sesión puede haber expirado o el token es inválido.")
           } else {
-            setErrorMsg(`Error ${response.status}: ${response.statusText || "No se pudieron obtener los datos"}`)
+            setErrorMsg(`Error ${response?.status || "desconocido"}: ${response?.statusText || "No se pudieron obtener los datos"}`)
           }
           return
         }

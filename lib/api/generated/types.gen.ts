@@ -91,6 +91,30 @@ export type ConstraintViolation = {
     readonly instance?: string | null;
 };
 
+export type DetalleIntegracion = {
+    readonly id: number;
+    canInt?: number;
+    motivo?: string | null;
+    tipoMarca?: string | null;
+    integracion?: string;
+    vocal?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
+};
+
+export type DetalleIntegracionJsonMergePatch = {
+    readonly id: number;
+    canInt?: number;
+    motivo?: string | null;
+    tipoMarca?: string | null;
+    integracion?: string;
+    vocal?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
+};
+
 /**
  * A representation of common errors.
  */
@@ -114,8 +138,206 @@ export type Error = {
     readonly type?: string;
 };
 
+export type Expediente = {
+    readonly id: number;
+    integracions?: Array<string>;
+    presidencia?: string | null;
+    NumExp?: number | null;
+    anio?: number | null;
+    cuij?: string | null;
+    caratula?: string;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    nroExpCompleto?: string;
+    numExp?: number | null;
+    readonly iri?: string;
+};
+
+export type ExpedienteJsonMergePatch = {
+    readonly id: number;
+    integracions?: Array<string>;
+    presidencia?: string | null;
+    NumExp?: number | null;
+    anio?: number | null;
+    cuij?: string | null;
+    caratula?: string;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    nroExpCompleto?: string;
+    numExp?: number | null;
+    readonly iri?: string;
+};
+
+export type Fuero = {
+    readonly id: number;
+    descripcion?: string;
+    vocals?: Array<string>;
+    codFuero?: string | null;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
+};
+
+export type FueroJsonMergePatch = {
+    readonly id: number;
+    descripcion?: string;
+    vocals?: Array<string>;
+    codFuero?: string | null;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
+};
+
 export type ImpersonationImpersonationDto = {
     token?: string;
+};
+
+export type Integracion = {
+    readonly id: number;
+    fecha?: string;
+    sala?: number;
+    tipo?: string;
+    observacion?: string | null;
+    estado?: string;
+    readonly detallesIntegracion?: Array<string>;
+    presidencia?: string;
+    expediente?: string;
+    nroIntegra?: number | null;
+    anioIntegra?: number | null;
+    fechaReintegro?: string | null;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly mes?: string | null;
+    readonly vocalSorteado?: Array<string | null>;
+    readonly iri?: string;
+};
+
+export type IntegracionJsonMergePatch = {
+    readonly id: number;
+    fecha?: string;
+    sala?: number;
+    tipo?: string;
+    observacion?: string | null;
+    estado?: string;
+    readonly detallesIntegracion?: Array<string>;
+    presidencia?: string;
+    expediente?: string;
+    nroIntegra?: number | null;
+    anioIntegra?: number | null;
+    fechaReintegro?: string | null;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly mes?: string | null;
+    readonly vocalSorteado?: Array<string | null>;
+    readonly iri?: string;
+};
+
+export type Licencia = {
+    readonly id: number;
+    fechaDesde?: string;
+    fechaHasta?: string;
+    motivo: string;
+    estado?: string;
+    vocal?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
+};
+
+export type LicenciaJsonMergePatch = {
+    readonly id: number;
+    fechaDesde?: string;
+    fechaHasta?: string;
+    motivo?: string;
+    estado?: string;
+    vocal?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
+};
+
+export type Presidencia = {
+    readonly id: number;
+    tribu?: string;
+    cantSala?: number;
+    vocSala?: number;
+    cantSalaPro?: number | null;
+    fecInst?: string;
+    idInst?: number;
+    email?: string;
+    estado?: string;
+    codOrg?: number;
+    licencia?: number | null;
+    sortComun?: number;
+    sortAdHoc?: number;
+    sortCinco?: number;
+    sortComp?: number;
+    usuarios?: Array<string>;
+    integracions?: Array<string>;
+    codFuero?: string | null;
+    vocals?: Array<string>;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    vocOtroFuero?: number | null;
+    resta?: number | null;
+    sorteoAleatorio?: number | null;
+    expedientes?: Array<string>;
+    readonly iri?: string;
+};
+
+export type PresidenciaJsonMergePatch = {
+    readonly id: number;
+    tribu?: string;
+    cantSala?: number;
+    vocSala?: number;
+    cantSalaPro?: number | null;
+    fecInst?: string;
+    idInst?: number;
+    email?: string;
+    estado?: string;
+    codOrg?: number;
+    licencia?: number | null;
+    sortComun?: number;
+    sortAdHoc?: number;
+    sortCinco?: number;
+    sortComp?: number;
+    usuarios?: Array<string>;
+    integracions?: Array<string>;
+    codFuero?: string | null;
+    vocals?: Array<string>;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    vocOtroFuero?: number | null;
+    resta?: number | null;
+    sorteoAleatorio?: number | null;
+    expedientes?: Array<string>;
+    readonly iri?: string;
+};
+
+export type TipoMarca = {
+    readonly id: number;
+    descripcion?: string;
+    letra?: string | null;
+    readonly detallesIntegracion?: Array<string>;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
+};
+
+export type TipoMarcaJsonMergePatch = {
+    readonly id: number;
+    descripcion?: string;
+    letra?: string | null;
+    readonly detallesIntegracion?: Array<string>;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
 };
 
 export type Usuario = {
@@ -141,6 +363,7 @@ export type Usuario = {
     authCode?: string | null;
     trustedVersion?: number | null;
     profile?: Array<string | null> | null;
+    presidencia?: string | null;
     /**
      * A visual identifier that represents this user.
      */
@@ -195,10 +418,57 @@ export type UsuarioJsonMergePatch = {
     authCode?: string | null;
     trustedVersion?: number | null;
     profile?: Array<string | null> | null;
+    presidencia?: string | null;
     /**
      * A visual identifier that represents this user.
      */
     readonly userIdentifier?: string;
+    readonly iri?: string;
+};
+
+export type Vocal = {
+    readonly id: number;
+    sala?: number;
+    nombre?: string;
+    numero?: number;
+    estado?: string;
+    adHoc?: number;
+    orden?: number;
+    asigna?: number;
+    integra?: number;
+    email?: string | null;
+    fecBaja?: string | null;
+    motBaja?: string | null;
+    vocPropio?: number;
+    licencias?: Array<string>;
+    fuero?: string;
+    readonly detallesIntegracion?: Array<string>;
+    presidencia?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    readonly iri?: string;
+};
+
+export type VocalJsonMergePatch = {
+    readonly id: number;
+    sala?: number;
+    nombre?: string;
+    numero?: number;
+    estado?: string;
+    adHoc?: number;
+    orden?: number;
+    asigna?: number;
+    integra?: number;
+    email?: string | null;
+    fecBaja?: string | null;
+    motBaja?: string | null;
+    vocPropio?: number;
+    licencias?: Array<string>;
+    fuero?: string;
+    readonly detallesIntegracion?: Array<string>;
+    presidencia?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
     readonly iri?: string;
 };
 
@@ -293,11 +563,197 @@ export type ConstraintViolationWritable = {
     }>;
 };
 
+export type DetalleIntegracionWritable = {
+    canInt?: number;
+    motivo?: string | null;
+    tipoMarca?: string | null;
+    integracion?: string;
+    vocal?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type DetalleIntegracionJsonMergePatchWritable = {
+    canInt?: number;
+    motivo?: string | null;
+    tipoMarca?: string | null;
+    integracion?: string;
+    vocal?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
 /**
  * A representation of common errors.
  */
 export type ErrorWritable = {
     status?: number | null;
+};
+
+export type ExpedienteWritable = {
+    integracions?: Array<string>;
+    presidencia?: string | null;
+    NumExp?: number | null;
+    anio?: number | null;
+    cuij?: string | null;
+    caratula?: string;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    nroExpCompleto?: string;
+    numExp?: number | null;
+};
+
+export type ExpedienteJsonMergePatchWritable = {
+    integracions?: Array<string>;
+    presidencia?: string | null;
+    NumExp?: number | null;
+    anio?: number | null;
+    cuij?: string | null;
+    caratula?: string;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    nroExpCompleto?: string;
+    numExp?: number | null;
+};
+
+export type FueroWritable = {
+    descripcion?: string;
+    vocals?: Array<string>;
+    codFuero?: string | null;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type FueroJsonMergePatchWritable = {
+    descripcion?: string;
+    vocals?: Array<string>;
+    codFuero?: string | null;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type IntegracionWritable = {
+    fecha?: string;
+    sala?: number;
+    tipo?: string;
+    observacion?: string | null;
+    estado?: string;
+    presidencia?: string;
+    expediente?: string;
+    nroIntegra?: number | null;
+    anioIntegra?: number | null;
+    fechaReintegro?: string | null;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type IntegracionJsonMergePatchWritable = {
+    fecha?: string;
+    sala?: number;
+    tipo?: string;
+    observacion?: string | null;
+    estado?: string;
+    presidencia?: string;
+    expediente?: string;
+    nroIntegra?: number | null;
+    anioIntegra?: number | null;
+    fechaReintegro?: string | null;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type LicenciaWritable = {
+    fechaDesde?: string;
+    fechaHasta?: string;
+    motivo: string;
+    estado?: string;
+    vocal?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type LicenciaJsonMergePatchWritable = {
+    fechaDesde?: string;
+    fechaHasta?: string;
+    motivo?: string;
+    estado?: string;
+    vocal?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type PresidenciaWritable = {
+    tribu?: string;
+    cantSala?: number;
+    vocSala?: number;
+    cantSalaPro?: number | null;
+    fecInst?: string;
+    idInst?: number;
+    email?: string;
+    estado?: string;
+    codOrg?: number;
+    licencia?: number | null;
+    sortComun?: number;
+    sortAdHoc?: number;
+    sortCinco?: number;
+    sortComp?: number;
+    usuarios?: Array<string>;
+    integracions?: Array<string>;
+    codFuero?: string | null;
+    vocals?: Array<string>;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    vocOtroFuero?: number | null;
+    resta?: number | null;
+    sorteoAleatorio?: number | null;
+    expedientes?: Array<string>;
+};
+
+export type PresidenciaJsonMergePatchWritable = {
+    tribu?: string;
+    cantSala?: number;
+    vocSala?: number;
+    cantSalaPro?: number | null;
+    fecInst?: string;
+    idInst?: number;
+    email?: string;
+    estado?: string;
+    codOrg?: number;
+    licencia?: number | null;
+    sortComun?: number;
+    sortAdHoc?: number;
+    sortCinco?: number;
+    sortComp?: number;
+    usuarios?: Array<string>;
+    integracions?: Array<string>;
+    codFuero?: string | null;
+    vocals?: Array<string>;
+    lastUserAppId?: number | null;
+    storeId?: number;
+    vocOtroFuero?: number | null;
+    resta?: number | null;
+    sorteoAleatorio?: number | null;
+    expedientes?: Array<string>;
+};
+
+export type TipoMarcaWritable = {
+    descripcion?: string;
+    letra?: string | null;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type TipoMarcaJsonMergePatchWritable = {
+    descripcion?: string;
+    letra?: string | null;
+    estado?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
 };
 
 export type UsuarioWritable = {
@@ -318,6 +774,7 @@ export type UsuarioWritable = {
     authCode?: string | null;
     trustedVersion?: number | null;
     profile?: Array<string | null> | null;
+    presidencia?: string | null;
 };
 
 export type UsuarioUsuarioReadWritable = {
@@ -350,6 +807,47 @@ export type UsuarioJsonMergePatchWritable = {
     authCode?: string | null;
     trustedVersion?: number | null;
     profile?: Array<string | null> | null;
+    presidencia?: string | null;
+};
+
+export type VocalWritable = {
+    sala?: number;
+    nombre?: string;
+    numero?: number;
+    estado?: string;
+    adHoc?: number;
+    orden?: number;
+    asigna?: number;
+    integra?: number;
+    email?: string | null;
+    fecBaja?: string | null;
+    motBaja?: string | null;
+    vocPropio?: number;
+    licencias?: Array<string>;
+    fuero?: string;
+    presidencia?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
+};
+
+export type VocalJsonMergePatchWritable = {
+    sala?: number;
+    nombre?: string;
+    numero?: number;
+    estado?: string;
+    adHoc?: number;
+    orden?: number;
+    asigna?: number;
+    integra?: number;
+    email?: string | null;
+    fecBaja?: string | null;
+    motBaja?: string | null;
+    vocPropio?: number;
+    licencias?: Array<string>;
+    fuero?: string;
+    presidencia?: string;
+    lastUserAppId?: number | null;
+    storeId?: number;
 };
 
 export type ApiAuditoriaActivarTodasData = {
@@ -927,6 +1425,486 @@ export type ApiConfiguracionSistemasIdPatchResponses = {
 
 export type ApiConfiguracionSistemasIdPatchResponse = ApiConfiguracionSistemasIdPatchResponses[keyof ApiConfiguracionSistemasIdPatchResponses];
 
+export type ApiDetalleIntegracionsGetCollectionData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * The collection page number
+         */
+        page?: number;
+        /**
+         * The number of items per page
+         */
+        itemsPerPage?: number;
+    };
+    url: '/api/detalle_integracions';
+};
+
+export type ApiDetalleIntegracionsGetCollectionResponses = {
+    /**
+     * DetalleIntegracion collection
+     */
+    200: PaginatedResponse & {
+        items: Array<DetalleIntegracion>;
+    };
+};
+
+export type ApiDetalleIntegracionsGetCollectionResponse = ApiDetalleIntegracionsGetCollectionResponses[keyof ApiDetalleIntegracionsGetCollectionResponses];
+
+export type ApiDetalleIntegracionsPostData = {
+    /**
+     * The new DetalleIntegracion resource
+     */
+    body: DetalleIntegracionWritable;
+    path?: never;
+    query?: never;
+    url: '/api/detalle_integracions';
+};
+
+export type ApiDetalleIntegracionsPostErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiDetalleIntegracionsPostError = ApiDetalleIntegracionsPostErrors[keyof ApiDetalleIntegracionsPostErrors];
+
+export type ApiDetalleIntegracionsPostResponses = {
+    /**
+     * DetalleIntegracion resource created
+     */
+    201: DetalleIntegracion;
+};
+
+export type ApiDetalleIntegracionsPostResponse = ApiDetalleIntegracionsPostResponses[keyof ApiDetalleIntegracionsPostResponses];
+
+export type ApiDetalleIntegracionsIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * DetalleIntegracion identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/detalle_integracions/{id}';
+};
+
+export type ApiDetalleIntegracionsIdDeleteErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiDetalleIntegracionsIdDeleteError = ApiDetalleIntegracionsIdDeleteErrors[keyof ApiDetalleIntegracionsIdDeleteErrors];
+
+export type ApiDetalleIntegracionsIdDeleteResponses = {
+    /**
+     * DetalleIntegracion resource deleted
+     */
+    204: void;
+};
+
+export type ApiDetalleIntegracionsIdDeleteResponse = ApiDetalleIntegracionsIdDeleteResponses[keyof ApiDetalleIntegracionsIdDeleteResponses];
+
+export type ApiDetalleIntegracionsIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * DetalleIntegracion identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/detalle_integracions/{id}';
+};
+
+export type ApiDetalleIntegracionsIdGetErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiDetalleIntegracionsIdGetError = ApiDetalleIntegracionsIdGetErrors[keyof ApiDetalleIntegracionsIdGetErrors];
+
+export type ApiDetalleIntegracionsIdGetResponses = {
+    /**
+     * DetalleIntegracion resource
+     */
+    200: DetalleIntegracion;
+};
+
+export type ApiDetalleIntegracionsIdGetResponse = ApiDetalleIntegracionsIdGetResponses[keyof ApiDetalleIntegracionsIdGetResponses];
+
+export type ApiDetalleIntegracionsIdPatchData = {
+    /**
+     * The updated DetalleIntegracion resource
+     */
+    body: DetalleIntegracionJsonMergePatchWritable;
+    path: {
+        /**
+         * DetalleIntegracion identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/detalle_integracions/{id}';
+};
+
+export type ApiDetalleIntegracionsIdPatchErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * Not found
+     */
+    404: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiDetalleIntegracionsIdPatchError = ApiDetalleIntegracionsIdPatchErrors[keyof ApiDetalleIntegracionsIdPatchErrors];
+
+export type ApiDetalleIntegracionsIdPatchResponses = {
+    /**
+     * DetalleIntegracion resource updated
+     */
+    200: DetalleIntegracion;
+};
+
+export type ApiDetalleIntegracionsIdPatchResponse = ApiDetalleIntegracionsIdPatchResponses[keyof ApiDetalleIntegracionsIdPatchResponses];
+
+export type ApiExpedientesGetCollectionData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * The collection page number
+         */
+        page?: number;
+        /**
+         * The number of items per page
+         */
+        itemsPerPage?: number;
+    };
+    url: '/api/expedientes';
+};
+
+export type ApiExpedientesGetCollectionResponses = {
+    /**
+     * Expediente collection
+     */
+    200: PaginatedResponse & {
+        items: Array<Expediente>;
+    };
+};
+
+export type ApiExpedientesGetCollectionResponse = ApiExpedientesGetCollectionResponses[keyof ApiExpedientesGetCollectionResponses];
+
+export type ApiExpedientesPostData = {
+    /**
+     * The new Expediente resource
+     */
+    body: ExpedienteWritable;
+    path?: never;
+    query?: never;
+    url: '/api/expedientes';
+};
+
+export type ApiExpedientesPostErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiExpedientesPostError = ApiExpedientesPostErrors[keyof ApiExpedientesPostErrors];
+
+export type ApiExpedientesPostResponses = {
+    /**
+     * Expediente resource created
+     */
+    201: Expediente;
+};
+
+export type ApiExpedientesPostResponse = ApiExpedientesPostResponses[keyof ApiExpedientesPostResponses];
+
+export type ApiExpedientesIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Expediente identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/expedientes/{id}';
+};
+
+export type ApiExpedientesIdDeleteErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiExpedientesIdDeleteError = ApiExpedientesIdDeleteErrors[keyof ApiExpedientesIdDeleteErrors];
+
+export type ApiExpedientesIdDeleteResponses = {
+    /**
+     * Expediente resource deleted
+     */
+    204: void;
+};
+
+export type ApiExpedientesIdDeleteResponse = ApiExpedientesIdDeleteResponses[keyof ApiExpedientesIdDeleteResponses];
+
+export type ApiExpedientesIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Expediente identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/expedientes/{id}';
+};
+
+export type ApiExpedientesIdGetErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiExpedientesIdGetError = ApiExpedientesIdGetErrors[keyof ApiExpedientesIdGetErrors];
+
+export type ApiExpedientesIdGetResponses = {
+    /**
+     * Expediente resource
+     */
+    200: Expediente;
+};
+
+export type ApiExpedientesIdGetResponse = ApiExpedientesIdGetResponses[keyof ApiExpedientesIdGetResponses];
+
+export type ApiExpedientesIdPatchData = {
+    /**
+     * The updated Expediente resource
+     */
+    body: ExpedienteJsonMergePatchWritable;
+    path: {
+        /**
+         * Expediente identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/expedientes/{id}';
+};
+
+export type ApiExpedientesIdPatchErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * Not found
+     */
+    404: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiExpedientesIdPatchError = ApiExpedientesIdPatchErrors[keyof ApiExpedientesIdPatchErrors];
+
+export type ApiExpedientesIdPatchResponses = {
+    /**
+     * Expediente resource updated
+     */
+    200: Expediente;
+};
+
+export type ApiExpedientesIdPatchResponse = ApiExpedientesIdPatchResponses[keyof ApiExpedientesIdPatchResponses];
+
+export type ApiFuerosGetCollectionData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * The collection page number
+         */
+        page?: number;
+        /**
+         * The number of items per page
+         */
+        itemsPerPage?: number;
+    };
+    url: '/api/fueros';
+};
+
+export type ApiFuerosGetCollectionResponses = {
+    /**
+     * Fuero collection
+     */
+    200: PaginatedResponse & {
+        items: Array<Fuero>;
+    };
+};
+
+export type ApiFuerosGetCollectionResponse = ApiFuerosGetCollectionResponses[keyof ApiFuerosGetCollectionResponses];
+
+export type ApiFuerosPostData = {
+    /**
+     * The new Fuero resource
+     */
+    body: FueroWritable;
+    path?: never;
+    query?: never;
+    url: '/api/fueros';
+};
+
+export type ApiFuerosPostErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiFuerosPostError = ApiFuerosPostErrors[keyof ApiFuerosPostErrors];
+
+export type ApiFuerosPostResponses = {
+    /**
+     * Fuero resource created
+     */
+    201: Fuero;
+};
+
+export type ApiFuerosPostResponse = ApiFuerosPostResponses[keyof ApiFuerosPostResponses];
+
+export type ApiFuerosIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Fuero identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/fueros/{id}';
+};
+
+export type ApiFuerosIdDeleteErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiFuerosIdDeleteError = ApiFuerosIdDeleteErrors[keyof ApiFuerosIdDeleteErrors];
+
+export type ApiFuerosIdDeleteResponses = {
+    /**
+     * Fuero resource deleted
+     */
+    204: void;
+};
+
+export type ApiFuerosIdDeleteResponse = ApiFuerosIdDeleteResponses[keyof ApiFuerosIdDeleteResponses];
+
+export type ApiFuerosIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Fuero identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/fueros/{id}';
+};
+
+export type ApiFuerosIdGetErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiFuerosIdGetError = ApiFuerosIdGetErrors[keyof ApiFuerosIdGetErrors];
+
+export type ApiFuerosIdGetResponses = {
+    /**
+     * Fuero resource
+     */
+    200: Fuero;
+};
+
+export type ApiFuerosIdGetResponse = ApiFuerosIdGetResponses[keyof ApiFuerosIdGetResponses];
+
+export type ApiFuerosIdPatchData = {
+    /**
+     * The updated Fuero resource
+     */
+    body: FueroJsonMergePatchWritable;
+    path: {
+        /**
+         * Fuero identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/fueros/{id}';
+};
+
+export type ApiFuerosIdPatchErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * Not found
+     */
+    404: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiFuerosIdPatchError = ApiFuerosIdPatchErrors[keyof ApiFuerosIdPatchErrors];
+
+export type ApiFuerosIdPatchResponses = {
+    /**
+     * Fuero resource updated
+     */
+    200: Fuero;
+};
+
+export type ApiFuerosIdPatchResponse = ApiFuerosIdPatchResponses[keyof ApiFuerosIdPatchResponses];
+
 export type ApiImpersonacionFinalizarData = {
     body?: never;
     path?: never;
@@ -994,6 +1972,326 @@ export type ApiImpersonacionIniciarResponses = {
 
 export type ApiImpersonacionIniciarResponse = ApiImpersonacionIniciarResponses[keyof ApiImpersonacionIniciarResponses];
 
+export type ApiIntegracionsGetCollectionData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * The collection page number
+         */
+        page?: number;
+        /**
+         * The number of items per page
+         */
+        itemsPerPage?: number;
+    };
+    url: '/api/integracions';
+};
+
+export type ApiIntegracionsGetCollectionResponses = {
+    /**
+     * Integracion collection
+     */
+    200: PaginatedResponse & {
+        items: Array<Integracion>;
+    };
+};
+
+export type ApiIntegracionsGetCollectionResponse = ApiIntegracionsGetCollectionResponses[keyof ApiIntegracionsGetCollectionResponses];
+
+export type ApiIntegracionsPostData = {
+    /**
+     * The new Integracion resource
+     */
+    body: IntegracionWritable;
+    path?: never;
+    query?: never;
+    url: '/api/integracions';
+};
+
+export type ApiIntegracionsPostErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiIntegracionsPostError = ApiIntegracionsPostErrors[keyof ApiIntegracionsPostErrors];
+
+export type ApiIntegracionsPostResponses = {
+    /**
+     * Integracion resource created
+     */
+    201: Integracion;
+};
+
+export type ApiIntegracionsPostResponse = ApiIntegracionsPostResponses[keyof ApiIntegracionsPostResponses];
+
+export type ApiIntegracionsIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Integracion identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/integracions/{id}';
+};
+
+export type ApiIntegracionsIdDeleteErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiIntegracionsIdDeleteError = ApiIntegracionsIdDeleteErrors[keyof ApiIntegracionsIdDeleteErrors];
+
+export type ApiIntegracionsIdDeleteResponses = {
+    /**
+     * Integracion resource deleted
+     */
+    204: void;
+};
+
+export type ApiIntegracionsIdDeleteResponse = ApiIntegracionsIdDeleteResponses[keyof ApiIntegracionsIdDeleteResponses];
+
+export type ApiIntegracionsIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Integracion identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/integracions/{id}';
+};
+
+export type ApiIntegracionsIdGetErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiIntegracionsIdGetError = ApiIntegracionsIdGetErrors[keyof ApiIntegracionsIdGetErrors];
+
+export type ApiIntegracionsIdGetResponses = {
+    /**
+     * Integracion resource
+     */
+    200: Integracion;
+};
+
+export type ApiIntegracionsIdGetResponse = ApiIntegracionsIdGetResponses[keyof ApiIntegracionsIdGetResponses];
+
+export type ApiIntegracionsIdPatchData = {
+    /**
+     * The updated Integracion resource
+     */
+    body: IntegracionJsonMergePatchWritable;
+    path: {
+        /**
+         * Integracion identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/integracions/{id}';
+};
+
+export type ApiIntegracionsIdPatchErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * Not found
+     */
+    404: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiIntegracionsIdPatchError = ApiIntegracionsIdPatchErrors[keyof ApiIntegracionsIdPatchErrors];
+
+export type ApiIntegracionsIdPatchResponses = {
+    /**
+     * Integracion resource updated
+     */
+    200: Integracion;
+};
+
+export type ApiIntegracionsIdPatchResponse = ApiIntegracionsIdPatchResponses[keyof ApiIntegracionsIdPatchResponses];
+
+export type ApiLicenciasGetCollectionData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * The collection page number
+         */
+        page?: number;
+        /**
+         * The number of items per page
+         */
+        itemsPerPage?: number;
+    };
+    url: '/api/licencias';
+};
+
+export type ApiLicenciasGetCollectionResponses = {
+    /**
+     * Licencia collection
+     */
+    200: PaginatedResponse & {
+        items: Array<Licencia>;
+    };
+};
+
+export type ApiLicenciasGetCollectionResponse = ApiLicenciasGetCollectionResponses[keyof ApiLicenciasGetCollectionResponses];
+
+export type ApiLicenciasPostData = {
+    /**
+     * The new Licencia resource
+     */
+    body: LicenciaWritable;
+    path?: never;
+    query?: never;
+    url: '/api/licencias';
+};
+
+export type ApiLicenciasPostErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiLicenciasPostError = ApiLicenciasPostErrors[keyof ApiLicenciasPostErrors];
+
+export type ApiLicenciasPostResponses = {
+    /**
+     * Licencia resource created
+     */
+    201: Licencia;
+};
+
+export type ApiLicenciasPostResponse = ApiLicenciasPostResponses[keyof ApiLicenciasPostResponses];
+
+export type ApiLicenciasIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Licencia identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/licencias/{id}';
+};
+
+export type ApiLicenciasIdDeleteErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiLicenciasIdDeleteError = ApiLicenciasIdDeleteErrors[keyof ApiLicenciasIdDeleteErrors];
+
+export type ApiLicenciasIdDeleteResponses = {
+    /**
+     * Licencia resource deleted
+     */
+    204: void;
+};
+
+export type ApiLicenciasIdDeleteResponse = ApiLicenciasIdDeleteResponses[keyof ApiLicenciasIdDeleteResponses];
+
+export type ApiLicenciasIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Licencia identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/licencias/{id}';
+};
+
+export type ApiLicenciasIdGetErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiLicenciasIdGetError = ApiLicenciasIdGetErrors[keyof ApiLicenciasIdGetErrors];
+
+export type ApiLicenciasIdGetResponses = {
+    /**
+     * Licencia resource
+     */
+    200: Licencia;
+};
+
+export type ApiLicenciasIdGetResponse = ApiLicenciasIdGetResponses[keyof ApiLicenciasIdGetResponses];
+
+export type ApiLicenciasIdPatchData = {
+    /**
+     * The updated Licencia resource
+     */
+    body: LicenciaJsonMergePatchWritable;
+    path: {
+        /**
+         * Licencia identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/licencias/{id}';
+};
+
+export type ApiLicenciasIdPatchErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * Not found
+     */
+    404: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiLicenciasIdPatchError = ApiLicenciasIdPatchErrors[keyof ApiLicenciasIdPatchErrors];
+
+export type ApiLicenciasIdPatchResponses = {
+    /**
+     * Licencia resource updated
+     */
+    200: Licencia;
+};
+
+export type ApiLicenciasIdPatchResponse = ApiLicenciasIdPatchResponses[keyof ApiLicenciasIdPatchResponses];
+
 export type LoginCheckPostData = {
     /**
      * The login data
@@ -1017,6 +2315,326 @@ export type LoginCheckPostResponses = {
 };
 
 export type LoginCheckPostResponse = LoginCheckPostResponses[keyof LoginCheckPostResponses];
+
+export type ApiPresidenciasGetCollectionData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * The collection page number
+         */
+        page?: number;
+        /**
+         * The number of items per page
+         */
+        itemsPerPage?: number;
+    };
+    url: '/api/presidencias';
+};
+
+export type ApiPresidenciasGetCollectionResponses = {
+    /**
+     * Presidencia collection
+     */
+    200: PaginatedResponse & {
+        items: Array<Presidencia>;
+    };
+};
+
+export type ApiPresidenciasGetCollectionResponse = ApiPresidenciasGetCollectionResponses[keyof ApiPresidenciasGetCollectionResponses];
+
+export type ApiPresidenciasPostData = {
+    /**
+     * The new Presidencia resource
+     */
+    body: PresidenciaWritable;
+    path?: never;
+    query?: never;
+    url: '/api/presidencias';
+};
+
+export type ApiPresidenciasPostErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiPresidenciasPostError = ApiPresidenciasPostErrors[keyof ApiPresidenciasPostErrors];
+
+export type ApiPresidenciasPostResponses = {
+    /**
+     * Presidencia resource created
+     */
+    201: Presidencia;
+};
+
+export type ApiPresidenciasPostResponse = ApiPresidenciasPostResponses[keyof ApiPresidenciasPostResponses];
+
+export type ApiPresidenciasIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Presidencia identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/presidencias/{id}';
+};
+
+export type ApiPresidenciasIdDeleteErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiPresidenciasIdDeleteError = ApiPresidenciasIdDeleteErrors[keyof ApiPresidenciasIdDeleteErrors];
+
+export type ApiPresidenciasIdDeleteResponses = {
+    /**
+     * Presidencia resource deleted
+     */
+    204: void;
+};
+
+export type ApiPresidenciasIdDeleteResponse = ApiPresidenciasIdDeleteResponses[keyof ApiPresidenciasIdDeleteResponses];
+
+export type ApiPresidenciasIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Presidencia identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/presidencias/{id}';
+};
+
+export type ApiPresidenciasIdGetErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiPresidenciasIdGetError = ApiPresidenciasIdGetErrors[keyof ApiPresidenciasIdGetErrors];
+
+export type ApiPresidenciasIdGetResponses = {
+    /**
+     * Presidencia resource
+     */
+    200: Presidencia;
+};
+
+export type ApiPresidenciasIdGetResponse = ApiPresidenciasIdGetResponses[keyof ApiPresidenciasIdGetResponses];
+
+export type ApiPresidenciasIdPatchData = {
+    /**
+     * The updated Presidencia resource
+     */
+    body: PresidenciaJsonMergePatchWritable;
+    path: {
+        /**
+         * Presidencia identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/presidencias/{id}';
+};
+
+export type ApiPresidenciasIdPatchErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * Not found
+     */
+    404: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiPresidenciasIdPatchError = ApiPresidenciasIdPatchErrors[keyof ApiPresidenciasIdPatchErrors];
+
+export type ApiPresidenciasIdPatchResponses = {
+    /**
+     * Presidencia resource updated
+     */
+    200: Presidencia;
+};
+
+export type ApiPresidenciasIdPatchResponse = ApiPresidenciasIdPatchResponses[keyof ApiPresidenciasIdPatchResponses];
+
+export type ApiTipoMarcasGetCollectionData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * The collection page number
+         */
+        page?: number;
+        /**
+         * The number of items per page
+         */
+        itemsPerPage?: number;
+    };
+    url: '/api/tipo_marcas';
+};
+
+export type ApiTipoMarcasGetCollectionResponses = {
+    /**
+     * TipoMarca collection
+     */
+    200: PaginatedResponse & {
+        items: Array<TipoMarca>;
+    };
+};
+
+export type ApiTipoMarcasGetCollectionResponse = ApiTipoMarcasGetCollectionResponses[keyof ApiTipoMarcasGetCollectionResponses];
+
+export type ApiTipoMarcasPostData = {
+    /**
+     * The new TipoMarca resource
+     */
+    body: TipoMarcaWritable;
+    path?: never;
+    query?: never;
+    url: '/api/tipo_marcas';
+};
+
+export type ApiTipoMarcasPostErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiTipoMarcasPostError = ApiTipoMarcasPostErrors[keyof ApiTipoMarcasPostErrors];
+
+export type ApiTipoMarcasPostResponses = {
+    /**
+     * TipoMarca resource created
+     */
+    201: TipoMarca;
+};
+
+export type ApiTipoMarcasPostResponse = ApiTipoMarcasPostResponses[keyof ApiTipoMarcasPostResponses];
+
+export type ApiTipoMarcasIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * TipoMarca identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/tipo_marcas/{id}';
+};
+
+export type ApiTipoMarcasIdDeleteErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiTipoMarcasIdDeleteError = ApiTipoMarcasIdDeleteErrors[keyof ApiTipoMarcasIdDeleteErrors];
+
+export type ApiTipoMarcasIdDeleteResponses = {
+    /**
+     * TipoMarca resource deleted
+     */
+    204: void;
+};
+
+export type ApiTipoMarcasIdDeleteResponse = ApiTipoMarcasIdDeleteResponses[keyof ApiTipoMarcasIdDeleteResponses];
+
+export type ApiTipoMarcasIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * TipoMarca identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/tipo_marcas/{id}';
+};
+
+export type ApiTipoMarcasIdGetErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiTipoMarcasIdGetError = ApiTipoMarcasIdGetErrors[keyof ApiTipoMarcasIdGetErrors];
+
+export type ApiTipoMarcasIdGetResponses = {
+    /**
+     * TipoMarca resource
+     */
+    200: TipoMarca;
+};
+
+export type ApiTipoMarcasIdGetResponse = ApiTipoMarcasIdGetResponses[keyof ApiTipoMarcasIdGetResponses];
+
+export type ApiTipoMarcasIdPatchData = {
+    /**
+     * The updated TipoMarca resource
+     */
+    body: TipoMarcaJsonMergePatchWritable;
+    path: {
+        /**
+         * TipoMarca identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/tipo_marcas/{id}';
+};
+
+export type ApiTipoMarcasIdPatchErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * Not found
+     */
+    404: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiTipoMarcasIdPatchError = ApiTipoMarcasIdPatchErrors[keyof ApiTipoMarcasIdPatchErrors];
+
+export type ApiTipoMarcasIdPatchResponses = {
+    /**
+     * TipoMarca resource updated
+     */
+    200: TipoMarca;
+};
+
+export type ApiTipoMarcasIdPatchResponse = ApiTipoMarcasIdPatchResponses[keyof ApiTipoMarcasIdPatchResponses];
 
 export type ApiUsuariosGetCollectionData = {
     body?: never;
@@ -1339,3 +2957,163 @@ export type ApiUsuariosIdrestablecerClavePatchResponses = {
 };
 
 export type ApiUsuariosIdrestablecerClavePatchResponse = ApiUsuariosIdrestablecerClavePatchResponses[keyof ApiUsuariosIdrestablecerClavePatchResponses];
+
+export type ApiVocalsGetCollectionData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * The collection page number
+         */
+        page?: number;
+        /**
+         * The number of items per page
+         */
+        itemsPerPage?: number;
+    };
+    url: '/api/vocals';
+};
+
+export type ApiVocalsGetCollectionResponses = {
+    /**
+     * Vocal collection
+     */
+    200: PaginatedResponse & {
+        items: Array<Vocal>;
+    };
+};
+
+export type ApiVocalsGetCollectionResponse = ApiVocalsGetCollectionResponses[keyof ApiVocalsGetCollectionResponses];
+
+export type ApiVocalsPostData = {
+    /**
+     * The new Vocal resource
+     */
+    body: VocalWritable;
+    path?: never;
+    query?: never;
+    url: '/api/vocals';
+};
+
+export type ApiVocalsPostErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiVocalsPostError = ApiVocalsPostErrors[keyof ApiVocalsPostErrors];
+
+export type ApiVocalsPostResponses = {
+    /**
+     * Vocal resource created
+     */
+    201: Vocal;
+};
+
+export type ApiVocalsPostResponse = ApiVocalsPostResponses[keyof ApiVocalsPostResponses];
+
+export type ApiVocalsIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Vocal identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/vocals/{id}';
+};
+
+export type ApiVocalsIdDeleteErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiVocalsIdDeleteError = ApiVocalsIdDeleteErrors[keyof ApiVocalsIdDeleteErrors];
+
+export type ApiVocalsIdDeleteResponses = {
+    /**
+     * Vocal resource deleted
+     */
+    204: void;
+};
+
+export type ApiVocalsIdDeleteResponse = ApiVocalsIdDeleteResponses[keyof ApiVocalsIdDeleteResponses];
+
+export type ApiVocalsIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Vocal identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/vocals/{id}';
+};
+
+export type ApiVocalsIdGetErrors = {
+    /**
+     * Not found
+     */
+    404: Error;
+};
+
+export type ApiVocalsIdGetError = ApiVocalsIdGetErrors[keyof ApiVocalsIdGetErrors];
+
+export type ApiVocalsIdGetResponses = {
+    /**
+     * Vocal resource
+     */
+    200: Vocal;
+};
+
+export type ApiVocalsIdGetResponse = ApiVocalsIdGetResponses[keyof ApiVocalsIdGetResponses];
+
+export type ApiVocalsIdPatchData = {
+    /**
+     * The updated Vocal resource
+     */
+    body: VocalJsonMergePatchWritable;
+    path: {
+        /**
+         * Vocal identifier
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/api/vocals/{id}';
+};
+
+export type ApiVocalsIdPatchErrors = {
+    /**
+     * Invalid input
+     */
+    400: Error;
+    /**
+     * Not found
+     */
+    404: Error;
+    /**
+     * An error occurred
+     */
+    422: ConstraintViolation;
+};
+
+export type ApiVocalsIdPatchError = ApiVocalsIdPatchErrors[keyof ApiVocalsIdPatchErrors];
+
+export type ApiVocalsIdPatchResponses = {
+    /**
+     * Vocal resource updated
+     */
+    200: Vocal;
+};
+
+export type ApiVocalsIdPatchResponse = ApiVocalsIdPatchResponses[keyof ApiVocalsIdPatchResponses];

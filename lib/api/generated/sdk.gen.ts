@@ -2,7 +2,7 @@
 
 import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
-import type { ApiAuditoriaActivarData, ApiAuditoriaActivarErrors, ApiAuditoriaActivarResponses, ApiAuditoriaActivarTodasData, ApiAuditoriaActivarTodasErrors, ApiAuditoriaActivarTodasResponses, ApiAuditoriaConfigData, ApiAuditoriaConfigErrors, ApiAuditoriaConfigResponses, ApiAuditoriaEliminarData, ApiAuditoriaEliminarErrors, ApiAuditoriaEliminarResponses, ApiAuditoriaEliminarTodasData, ApiAuditoriaEliminarTodasErrors, ApiAuditoriaEliminarTodasResponses, ApiAuditoriaPausarData, ApiAuditoriaPausarErrors, ApiAuditoriaPausarResponses, ApiAuditoriaPausarTodasData, ApiAuditoriaPausarTodasErrors, ApiAuditoriaPausarTodasResponses, ApiAuditoriaReanudarData, ApiAuditoriaReanudarErrors, ApiAuditoriaReanudarResponses, ApiAuditoriaReanudarTodasData, ApiAuditoriaReanudarTodasErrors, ApiAuditoriaReanudarTodasResponses, ApiAuditoriaReporteActividadData, ApiAuditoriaReporteActividadErrors, ApiAuditoriaReporteActividadResponses, ApiAuditoriaReporteData, ApiAuditoriaReporteErrors, ApiAuditoriaReporteResponses, ApiConfiguracionSistemasGetCollectionData, ApiConfiguracionSistemasGetCollectionErrors, ApiConfiguracionSistemasGetCollectionResponses, ApiConfiguracionSistemasIdDeleteData, ApiConfiguracionSistemasIdDeleteErrors, ApiConfiguracionSistemasIdDeleteResponses, ApiConfiguracionSistemasIdGetData, ApiConfiguracionSistemasIdGetErrors, ApiConfiguracionSistemasIdGetResponses, ApiConfiguracionSistemasIdPatchData, ApiConfiguracionSistemasIdPatchErrors, ApiConfiguracionSistemasIdPatchResponses, ApiConfiguracionSistemasPostData, ApiConfiguracionSistemasPostErrors, ApiConfiguracionSistemasPostResponses, ApiImpersonacionFinalizarData, ApiImpersonacionFinalizarErrors, ApiImpersonacionFinalizarResponses, ApiImpersonacionIniciarData, ApiImpersonacionIniciarErrors, ApiImpersonacionIniciarResponses, ApiUsuarioscambiarClavePostData, ApiUsuarioscambiarClavePostErrors, ApiUsuarioscambiarClavePostResponses, ApiUsuariosGetCollectionData, ApiUsuariosGetCollectionErrors, ApiUsuariosGetCollectionResponses, ApiUsuariosIddarDeBajaPatchData, ApiUsuariosIddarDeBajaPatchErrors, ApiUsuariosIddarDeBajaPatchResponses, ApiUsuariosIdGetData, ApiUsuariosIdGetErrors, ApiUsuariosIdGetResponses, ApiUsuariosIdPatchData, ApiUsuariosIdPatchErrors, ApiUsuariosIdPatchResponses, ApiUsuariosIdreactivarPatchData, ApiUsuariosIdreactivarPatchErrors, ApiUsuariosIdreactivarPatchResponses, ApiUsuariosIdrestablecerClavePatchData, ApiUsuariosIdrestablecerClavePatchErrors, ApiUsuariosIdrestablecerClavePatchResponses, ApiUsuariosPostData, ApiUsuariosPostErrors, ApiUsuariosPostResponses, LoginCheckPostData, LoginCheckPostResponses } from './types.gen';
+import type { ApiAuditoriaActivarData, ApiAuditoriaActivarErrors, ApiAuditoriaActivarResponses, ApiAuditoriaActivarTodasData, ApiAuditoriaActivarTodasErrors, ApiAuditoriaActivarTodasResponses, ApiAuditoriaConfigData, ApiAuditoriaConfigErrors, ApiAuditoriaConfigResponses, ApiAuditoriaEliminarData, ApiAuditoriaEliminarErrors, ApiAuditoriaEliminarResponses, ApiAuditoriaEliminarTodasData, ApiAuditoriaEliminarTodasErrors, ApiAuditoriaEliminarTodasResponses, ApiAuditoriaPausarData, ApiAuditoriaPausarErrors, ApiAuditoriaPausarResponses, ApiAuditoriaPausarTodasData, ApiAuditoriaPausarTodasErrors, ApiAuditoriaPausarTodasResponses, ApiAuditoriaReanudarData, ApiAuditoriaReanudarErrors, ApiAuditoriaReanudarResponses, ApiAuditoriaReanudarTodasData, ApiAuditoriaReanudarTodasErrors, ApiAuditoriaReanudarTodasResponses, ApiAuditoriaReporteActividadData, ApiAuditoriaReporteActividadErrors, ApiAuditoriaReporteActividadResponses, ApiAuditoriaReporteData, ApiAuditoriaReporteErrors, ApiAuditoriaReporteResponses, ApiConfiguracionSistemasGetCollectionData, ApiConfiguracionSistemasGetCollectionErrors, ApiConfiguracionSistemasGetCollectionResponses, ApiConfiguracionSistemasIdDeleteData, ApiConfiguracionSistemasIdDeleteErrors, ApiConfiguracionSistemasIdDeleteResponses, ApiConfiguracionSistemasIdGetData, ApiConfiguracionSistemasIdGetErrors, ApiConfiguracionSistemasIdGetResponses, ApiConfiguracionSistemasIdPatchData, ApiConfiguracionSistemasIdPatchErrors, ApiConfiguracionSistemasIdPatchResponses, ApiConfiguracionSistemasPostData, ApiConfiguracionSistemasPostErrors, ApiConfiguracionSistemasPostResponses, ApiDetalleIntegracionsGetCollectionData, ApiDetalleIntegracionsGetCollectionResponses, ApiDetalleIntegracionsIdDeleteData, ApiDetalleIntegracionsIdDeleteErrors, ApiDetalleIntegracionsIdDeleteResponses, ApiDetalleIntegracionsIdGetData, ApiDetalleIntegracionsIdGetErrors, ApiDetalleIntegracionsIdGetResponses, ApiDetalleIntegracionsIdPatchData, ApiDetalleIntegracionsIdPatchErrors, ApiDetalleIntegracionsIdPatchResponses, ApiDetalleIntegracionsPostData, ApiDetalleIntegracionsPostErrors, ApiDetalleIntegracionsPostResponses, ApiExpedientesGetCollectionData, ApiExpedientesGetCollectionResponses, ApiExpedientesIdDeleteData, ApiExpedientesIdDeleteErrors, ApiExpedientesIdDeleteResponses, ApiExpedientesIdGetData, ApiExpedientesIdGetErrors, ApiExpedientesIdGetResponses, ApiExpedientesIdPatchData, ApiExpedientesIdPatchErrors, ApiExpedientesIdPatchResponses, ApiExpedientesPostData, ApiExpedientesPostErrors, ApiExpedientesPostResponses, ApiFuerosGetCollectionData, ApiFuerosGetCollectionResponses, ApiFuerosIdDeleteData, ApiFuerosIdDeleteErrors, ApiFuerosIdDeleteResponses, ApiFuerosIdGetData, ApiFuerosIdGetErrors, ApiFuerosIdGetResponses, ApiFuerosIdPatchData, ApiFuerosIdPatchErrors, ApiFuerosIdPatchResponses, ApiFuerosPostData, ApiFuerosPostErrors, ApiFuerosPostResponses, ApiImpersonacionFinalizarData, ApiImpersonacionFinalizarErrors, ApiImpersonacionFinalizarResponses, ApiImpersonacionIniciarData, ApiImpersonacionIniciarErrors, ApiImpersonacionIniciarResponses, ApiIntegracionsGetCollectionData, ApiIntegracionsGetCollectionResponses, ApiIntegracionsIdDeleteData, ApiIntegracionsIdDeleteErrors, ApiIntegracionsIdDeleteResponses, ApiIntegracionsIdGetData, ApiIntegracionsIdGetErrors, ApiIntegracionsIdGetResponses, ApiIntegracionsIdPatchData, ApiIntegracionsIdPatchErrors, ApiIntegracionsIdPatchResponses, ApiIntegracionsPostData, ApiIntegracionsPostErrors, ApiIntegracionsPostResponses, ApiLicenciasGetCollectionData, ApiLicenciasGetCollectionResponses, ApiLicenciasIdDeleteData, ApiLicenciasIdDeleteErrors, ApiLicenciasIdDeleteResponses, ApiLicenciasIdGetData, ApiLicenciasIdGetErrors, ApiLicenciasIdGetResponses, ApiLicenciasIdPatchData, ApiLicenciasIdPatchErrors, ApiLicenciasIdPatchResponses, ApiLicenciasPostData, ApiLicenciasPostErrors, ApiLicenciasPostResponses, ApiPresidenciasGetCollectionData, ApiPresidenciasGetCollectionResponses, ApiPresidenciasIdDeleteData, ApiPresidenciasIdDeleteErrors, ApiPresidenciasIdDeleteResponses, ApiPresidenciasIdGetData, ApiPresidenciasIdGetErrors, ApiPresidenciasIdGetResponses, ApiPresidenciasIdPatchData, ApiPresidenciasIdPatchErrors, ApiPresidenciasIdPatchResponses, ApiPresidenciasPostData, ApiPresidenciasPostErrors, ApiPresidenciasPostResponses, ApiTipoMarcasGetCollectionData, ApiTipoMarcasGetCollectionResponses, ApiTipoMarcasIdDeleteData, ApiTipoMarcasIdDeleteErrors, ApiTipoMarcasIdDeleteResponses, ApiTipoMarcasIdGetData, ApiTipoMarcasIdGetErrors, ApiTipoMarcasIdGetResponses, ApiTipoMarcasIdPatchData, ApiTipoMarcasIdPatchErrors, ApiTipoMarcasIdPatchResponses, ApiTipoMarcasPostData, ApiTipoMarcasPostErrors, ApiTipoMarcasPostResponses, ApiUsuarioscambiarClavePostData, ApiUsuarioscambiarClavePostErrors, ApiUsuarioscambiarClavePostResponses, ApiUsuariosGetCollectionData, ApiUsuariosGetCollectionErrors, ApiUsuariosGetCollectionResponses, ApiUsuariosIddarDeBajaPatchData, ApiUsuariosIddarDeBajaPatchErrors, ApiUsuariosIddarDeBajaPatchResponses, ApiUsuariosIdGetData, ApiUsuariosIdGetErrors, ApiUsuariosIdGetResponses, ApiUsuariosIdPatchData, ApiUsuariosIdPatchErrors, ApiUsuariosIdPatchResponses, ApiUsuariosIdreactivarPatchData, ApiUsuariosIdreactivarPatchErrors, ApiUsuariosIdreactivarPatchResponses, ApiUsuariosIdrestablecerClavePatchData, ApiUsuariosIdrestablecerClavePatchErrors, ApiUsuariosIdrestablecerClavePatchResponses, ApiUsuariosPostData, ApiUsuariosPostErrors, ApiUsuariosPostResponses, ApiVocalsGetCollectionData, ApiVocalsGetCollectionResponses, ApiVocalsIdDeleteData, ApiVocalsIdDeleteErrors, ApiVocalsIdDeleteResponses, ApiVocalsIdGetData, ApiVocalsIdGetErrors, ApiVocalsIdGetResponses, ApiVocalsIdPatchData, ApiVocalsIdPatchErrors, ApiVocalsIdPatchResponses, ApiVocalsPostData, ApiVocalsPostErrors, ApiVocalsPostResponses, LoginCheckPostData, LoginCheckPostResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -203,6 +203,195 @@ export const apiConfiguracionSistemasIdPatch = <ThrowOnError extends boolean = f
 });
 
 /**
+ * Retrieves the collection of DetalleIntegracion resources.
+ *
+ * Retrieves the collection of DetalleIntegracion resources.
+ */
+export const apiDetalleIntegracionsGetCollection = <ThrowOnError extends boolean = false>(options?: Options<ApiDetalleIntegracionsGetCollectionData, ThrowOnError>): RequestResult<ApiDetalleIntegracionsGetCollectionResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ApiDetalleIntegracionsGetCollectionResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/detalle_integracions',
+    ...options
+});
+
+/**
+ * Creates a DetalleIntegracion resource.
+ *
+ * Creates a DetalleIntegracion resource.
+ */
+export const apiDetalleIntegracionsPost = <ThrowOnError extends boolean = false>(options: Options<ApiDetalleIntegracionsPostData, ThrowOnError>): RequestResult<ApiDetalleIntegracionsPostResponses, ApiDetalleIntegracionsPostErrors, ThrowOnError> => (options.client ?? client).post<ApiDetalleIntegracionsPostResponses, ApiDetalleIntegracionsPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/detalle_integracions',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Removes the DetalleIntegracion resource.
+ *
+ * Removes the DetalleIntegracion resource.
+ */
+export const apiDetalleIntegracionsIdDelete = <ThrowOnError extends boolean = false>(options: Options<ApiDetalleIntegracionsIdDeleteData, ThrowOnError>): RequestResult<ApiDetalleIntegracionsIdDeleteResponses, ApiDetalleIntegracionsIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<ApiDetalleIntegracionsIdDeleteResponses, ApiDetalleIntegracionsIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/detalle_integracions/{id}',
+    ...options
+});
+
+/**
+ * Retrieves a DetalleIntegracion resource.
+ *
+ * Retrieves a DetalleIntegracion resource.
+ */
+export const apiDetalleIntegracionsIdGet = <ThrowOnError extends boolean = false>(options: Options<ApiDetalleIntegracionsIdGetData, ThrowOnError>): RequestResult<ApiDetalleIntegracionsIdGetResponses, ApiDetalleIntegracionsIdGetErrors, ThrowOnError> => (options.client ?? client).get<ApiDetalleIntegracionsIdGetResponses, ApiDetalleIntegracionsIdGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/detalle_integracions/{id}',
+    ...options
+});
+
+/**
+ * Updates the DetalleIntegracion resource.
+ *
+ * Updates the DetalleIntegracion resource.
+ */
+export const apiDetalleIntegracionsIdPatch = <ThrowOnError extends boolean = false>(options: Options<ApiDetalleIntegracionsIdPatchData, ThrowOnError>): RequestResult<ApiDetalleIntegracionsIdPatchResponses, ApiDetalleIntegracionsIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<ApiDetalleIntegracionsIdPatchResponses, ApiDetalleIntegracionsIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/detalle_integracions/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/merge-patch+json',
+        ...options.headers
+    }
+});
+
+/**
+ * Retrieves the collection of Expediente resources.
+ *
+ * Retrieves the collection of Expediente resources.
+ */
+export const apiExpedientesGetCollection = <ThrowOnError extends boolean = false>(options?: Options<ApiExpedientesGetCollectionData, ThrowOnError>): RequestResult<ApiExpedientesGetCollectionResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ApiExpedientesGetCollectionResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/expedientes',
+    ...options
+});
+
+/**
+ * Creates a Expediente resource.
+ *
+ * Creates a Expediente resource.
+ */
+export const apiExpedientesPost = <ThrowOnError extends boolean = false>(options: Options<ApiExpedientesPostData, ThrowOnError>): RequestResult<ApiExpedientesPostResponses, ApiExpedientesPostErrors, ThrowOnError> => (options.client ?? client).post<ApiExpedientesPostResponses, ApiExpedientesPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/expedientes',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Removes the Expediente resource.
+ *
+ * Removes the Expediente resource.
+ */
+export const apiExpedientesIdDelete = <ThrowOnError extends boolean = false>(options: Options<ApiExpedientesIdDeleteData, ThrowOnError>): RequestResult<ApiExpedientesIdDeleteResponses, ApiExpedientesIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<ApiExpedientesIdDeleteResponses, ApiExpedientesIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/expedientes/{id}',
+    ...options
+});
+
+/**
+ * Retrieves a Expediente resource.
+ *
+ * Retrieves a Expediente resource.
+ */
+export const apiExpedientesIdGet = <ThrowOnError extends boolean = false>(options: Options<ApiExpedientesIdGetData, ThrowOnError>): RequestResult<ApiExpedientesIdGetResponses, ApiExpedientesIdGetErrors, ThrowOnError> => (options.client ?? client).get<ApiExpedientesIdGetResponses, ApiExpedientesIdGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/expedientes/{id}',
+    ...options
+});
+
+/**
+ * Updates the Expediente resource.
+ *
+ * Updates the Expediente resource.
+ */
+export const apiExpedientesIdPatch = <ThrowOnError extends boolean = false>(options: Options<ApiExpedientesIdPatchData, ThrowOnError>): RequestResult<ApiExpedientesIdPatchResponses, ApiExpedientesIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<ApiExpedientesIdPatchResponses, ApiExpedientesIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/expedientes/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/merge-patch+json',
+        ...options.headers
+    }
+});
+
+/**
+ * Retrieves the collection of Fuero resources.
+ *
+ * Retrieves the collection of Fuero resources.
+ */
+export const apiFuerosGetCollection = <ThrowOnError extends boolean = false>(options?: Options<ApiFuerosGetCollectionData, ThrowOnError>): RequestResult<ApiFuerosGetCollectionResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ApiFuerosGetCollectionResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/fueros',
+    ...options
+});
+
+/**
+ * Creates a Fuero resource.
+ *
+ * Creates a Fuero resource.
+ */
+export const apiFuerosPost = <ThrowOnError extends boolean = false>(options: Options<ApiFuerosPostData, ThrowOnError>): RequestResult<ApiFuerosPostResponses, ApiFuerosPostErrors, ThrowOnError> => (options.client ?? client).post<ApiFuerosPostResponses, ApiFuerosPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/fueros',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Removes the Fuero resource.
+ *
+ * Removes the Fuero resource.
+ */
+export const apiFuerosIdDelete = <ThrowOnError extends boolean = false>(options: Options<ApiFuerosIdDeleteData, ThrowOnError>): RequestResult<ApiFuerosIdDeleteResponses, ApiFuerosIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<ApiFuerosIdDeleteResponses, ApiFuerosIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/fueros/{id}',
+    ...options
+});
+
+/**
+ * Retrieves a Fuero resource.
+ *
+ * Retrieves a Fuero resource.
+ */
+export const apiFuerosIdGet = <ThrowOnError extends boolean = false>(options: Options<ApiFuerosIdGetData, ThrowOnError>): RequestResult<ApiFuerosIdGetResponses, ApiFuerosIdGetErrors, ThrowOnError> => (options.client ?? client).get<ApiFuerosIdGetResponses, ApiFuerosIdGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/fueros/{id}',
+    ...options
+});
+
+/**
+ * Updates the Fuero resource.
+ *
+ * Updates the Fuero resource.
+ */
+export const apiFuerosIdPatch = <ThrowOnError extends boolean = false>(options: Options<ApiFuerosIdPatchData, ThrowOnError>): RequestResult<ApiFuerosIdPatchResponses, ApiFuerosIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<ApiFuerosIdPatchResponses, ApiFuerosIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/fueros/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/merge-patch+json',
+        ...options.headers
+    }
+});
+
+/**
  * Creates a Impersonation resource.
  *
  * Creates a Impersonation resource.
@@ -225,6 +414,132 @@ export const apiImpersonacionIniciar = <ThrowOnError extends boolean = false>(op
 });
 
 /**
+ * Retrieves the collection of Integracion resources.
+ *
+ * Retrieves the collection of Integracion resources.
+ */
+export const apiIntegracionsGetCollection = <ThrowOnError extends boolean = false>(options?: Options<ApiIntegracionsGetCollectionData, ThrowOnError>): RequestResult<ApiIntegracionsGetCollectionResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ApiIntegracionsGetCollectionResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/integracions',
+    ...options
+});
+
+/**
+ * Creates a Integracion resource.
+ *
+ * Creates a Integracion resource.
+ */
+export const apiIntegracionsPost = <ThrowOnError extends boolean = false>(options: Options<ApiIntegracionsPostData, ThrowOnError>): RequestResult<ApiIntegracionsPostResponses, ApiIntegracionsPostErrors, ThrowOnError> => (options.client ?? client).post<ApiIntegracionsPostResponses, ApiIntegracionsPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/integracions',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Removes the Integracion resource.
+ *
+ * Removes the Integracion resource.
+ */
+export const apiIntegracionsIdDelete = <ThrowOnError extends boolean = false>(options: Options<ApiIntegracionsIdDeleteData, ThrowOnError>): RequestResult<ApiIntegracionsIdDeleteResponses, ApiIntegracionsIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<ApiIntegracionsIdDeleteResponses, ApiIntegracionsIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/integracions/{id}',
+    ...options
+});
+
+/**
+ * Retrieves a Integracion resource.
+ *
+ * Retrieves a Integracion resource.
+ */
+export const apiIntegracionsIdGet = <ThrowOnError extends boolean = false>(options: Options<ApiIntegracionsIdGetData, ThrowOnError>): RequestResult<ApiIntegracionsIdGetResponses, ApiIntegracionsIdGetErrors, ThrowOnError> => (options.client ?? client).get<ApiIntegracionsIdGetResponses, ApiIntegracionsIdGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/integracions/{id}',
+    ...options
+});
+
+/**
+ * Updates the Integracion resource.
+ *
+ * Updates the Integracion resource.
+ */
+export const apiIntegracionsIdPatch = <ThrowOnError extends boolean = false>(options: Options<ApiIntegracionsIdPatchData, ThrowOnError>): RequestResult<ApiIntegracionsIdPatchResponses, ApiIntegracionsIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<ApiIntegracionsIdPatchResponses, ApiIntegracionsIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/integracions/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/merge-patch+json',
+        ...options.headers
+    }
+});
+
+/**
+ * Retrieves the collection of Licencia resources.
+ *
+ * Retrieves the collection of Licencia resources.
+ */
+export const apiLicenciasGetCollection = <ThrowOnError extends boolean = false>(options?: Options<ApiLicenciasGetCollectionData, ThrowOnError>): RequestResult<ApiLicenciasGetCollectionResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ApiLicenciasGetCollectionResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/licencias',
+    ...options
+});
+
+/**
+ * Creates a Licencia resource.
+ *
+ * Creates a Licencia resource.
+ */
+export const apiLicenciasPost = <ThrowOnError extends boolean = false>(options: Options<ApiLicenciasPostData, ThrowOnError>): RequestResult<ApiLicenciasPostResponses, ApiLicenciasPostErrors, ThrowOnError> => (options.client ?? client).post<ApiLicenciasPostResponses, ApiLicenciasPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/licencias',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Removes the Licencia resource.
+ *
+ * Removes the Licencia resource.
+ */
+export const apiLicenciasIdDelete = <ThrowOnError extends boolean = false>(options: Options<ApiLicenciasIdDeleteData, ThrowOnError>): RequestResult<ApiLicenciasIdDeleteResponses, ApiLicenciasIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<ApiLicenciasIdDeleteResponses, ApiLicenciasIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/licencias/{id}',
+    ...options
+});
+
+/**
+ * Retrieves a Licencia resource.
+ *
+ * Retrieves a Licencia resource.
+ */
+export const apiLicenciasIdGet = <ThrowOnError extends boolean = false>(options: Options<ApiLicenciasIdGetData, ThrowOnError>): RequestResult<ApiLicenciasIdGetResponses, ApiLicenciasIdGetErrors, ThrowOnError> => (options.client ?? client).get<ApiLicenciasIdGetResponses, ApiLicenciasIdGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/licencias/{id}',
+    ...options
+});
+
+/**
+ * Updates the Licencia resource.
+ *
+ * Updates the Licencia resource.
+ */
+export const apiLicenciasIdPatch = <ThrowOnError extends boolean = false>(options: Options<ApiLicenciasIdPatchData, ThrowOnError>): RequestResult<ApiLicenciasIdPatchResponses, ApiLicenciasIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<ApiLicenciasIdPatchResponses, ApiLicenciasIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/licencias/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/merge-patch+json',
+        ...options.headers
+    }
+});
+
+/**
  * Creates a user token.
  *
  * Creates a user token.
@@ -235,6 +550,132 @@ export const loginCheckPost = <ThrowOnError extends boolean = false>(options: Op
     ...options,
     headers: {
         'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Retrieves the collection of Presidencia resources.
+ *
+ * Retrieves the collection of Presidencia resources.
+ */
+export const apiPresidenciasGetCollection = <ThrowOnError extends boolean = false>(options?: Options<ApiPresidenciasGetCollectionData, ThrowOnError>): RequestResult<ApiPresidenciasGetCollectionResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ApiPresidenciasGetCollectionResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/presidencias',
+    ...options
+});
+
+/**
+ * Creates a Presidencia resource.
+ *
+ * Creates a Presidencia resource.
+ */
+export const apiPresidenciasPost = <ThrowOnError extends boolean = false>(options: Options<ApiPresidenciasPostData, ThrowOnError>): RequestResult<ApiPresidenciasPostResponses, ApiPresidenciasPostErrors, ThrowOnError> => (options.client ?? client).post<ApiPresidenciasPostResponses, ApiPresidenciasPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/presidencias',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Removes the Presidencia resource.
+ *
+ * Removes the Presidencia resource.
+ */
+export const apiPresidenciasIdDelete = <ThrowOnError extends boolean = false>(options: Options<ApiPresidenciasIdDeleteData, ThrowOnError>): RequestResult<ApiPresidenciasIdDeleteResponses, ApiPresidenciasIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<ApiPresidenciasIdDeleteResponses, ApiPresidenciasIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/presidencias/{id}',
+    ...options
+});
+
+/**
+ * Retrieves a Presidencia resource.
+ *
+ * Retrieves a Presidencia resource.
+ */
+export const apiPresidenciasIdGet = <ThrowOnError extends boolean = false>(options: Options<ApiPresidenciasIdGetData, ThrowOnError>): RequestResult<ApiPresidenciasIdGetResponses, ApiPresidenciasIdGetErrors, ThrowOnError> => (options.client ?? client).get<ApiPresidenciasIdGetResponses, ApiPresidenciasIdGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/presidencias/{id}',
+    ...options
+});
+
+/**
+ * Updates the Presidencia resource.
+ *
+ * Updates the Presidencia resource.
+ */
+export const apiPresidenciasIdPatch = <ThrowOnError extends boolean = false>(options: Options<ApiPresidenciasIdPatchData, ThrowOnError>): RequestResult<ApiPresidenciasIdPatchResponses, ApiPresidenciasIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<ApiPresidenciasIdPatchResponses, ApiPresidenciasIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/presidencias/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/merge-patch+json',
+        ...options.headers
+    }
+});
+
+/**
+ * Retrieves the collection of TipoMarca resources.
+ *
+ * Retrieves the collection of TipoMarca resources.
+ */
+export const apiTipoMarcasGetCollection = <ThrowOnError extends boolean = false>(options?: Options<ApiTipoMarcasGetCollectionData, ThrowOnError>): RequestResult<ApiTipoMarcasGetCollectionResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ApiTipoMarcasGetCollectionResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/tipo_marcas',
+    ...options
+});
+
+/**
+ * Creates a TipoMarca resource.
+ *
+ * Creates a TipoMarca resource.
+ */
+export const apiTipoMarcasPost = <ThrowOnError extends boolean = false>(options: Options<ApiTipoMarcasPostData, ThrowOnError>): RequestResult<ApiTipoMarcasPostResponses, ApiTipoMarcasPostErrors, ThrowOnError> => (options.client ?? client).post<ApiTipoMarcasPostResponses, ApiTipoMarcasPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/tipo_marcas',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Removes the TipoMarca resource.
+ *
+ * Removes the TipoMarca resource.
+ */
+export const apiTipoMarcasIdDelete = <ThrowOnError extends boolean = false>(options: Options<ApiTipoMarcasIdDeleteData, ThrowOnError>): RequestResult<ApiTipoMarcasIdDeleteResponses, ApiTipoMarcasIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<ApiTipoMarcasIdDeleteResponses, ApiTipoMarcasIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/tipo_marcas/{id}',
+    ...options
+});
+
+/**
+ * Retrieves a TipoMarca resource.
+ *
+ * Retrieves a TipoMarca resource.
+ */
+export const apiTipoMarcasIdGet = <ThrowOnError extends boolean = false>(options: Options<ApiTipoMarcasIdGetData, ThrowOnError>): RequestResult<ApiTipoMarcasIdGetResponses, ApiTipoMarcasIdGetErrors, ThrowOnError> => (options.client ?? client).get<ApiTipoMarcasIdGetResponses, ApiTipoMarcasIdGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/tipo_marcas/{id}',
+    ...options
+});
+
+/**
+ * Updates the TipoMarca resource.
+ *
+ * Updates the TipoMarca resource.
+ */
+export const apiTipoMarcasIdPatch = <ThrowOnError extends boolean = false>(options: Options<ApiTipoMarcasIdPatchData, ThrowOnError>): RequestResult<ApiTipoMarcasIdPatchResponses, ApiTipoMarcasIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<ApiTipoMarcasIdPatchResponses, ApiTipoMarcasIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/tipo_marcas/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/merge-patch+json',
         ...options.headers
     }
 });
@@ -337,4 +778,67 @@ export const apiUsuariosIdrestablecerClavePatch = <ThrowOnError extends boolean 
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/api/usuarios/{id}/restablecer-clave',
     ...options
+});
+
+/**
+ * Retrieves the collection of Vocal resources.
+ *
+ * Retrieves the collection of Vocal resources.
+ */
+export const apiVocalsGetCollection = <ThrowOnError extends boolean = false>(options?: Options<ApiVocalsGetCollectionData, ThrowOnError>): RequestResult<ApiVocalsGetCollectionResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ApiVocalsGetCollectionResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/vocals',
+    ...options
+});
+
+/**
+ * Creates a Vocal resource.
+ *
+ * Creates a Vocal resource.
+ */
+export const apiVocalsPost = <ThrowOnError extends boolean = false>(options: Options<ApiVocalsPostData, ThrowOnError>): RequestResult<ApiVocalsPostResponses, ApiVocalsPostErrors, ThrowOnError> => (options.client ?? client).post<ApiVocalsPostResponses, ApiVocalsPostErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/vocals',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Removes the Vocal resource.
+ *
+ * Removes the Vocal resource.
+ */
+export const apiVocalsIdDelete = <ThrowOnError extends boolean = false>(options: Options<ApiVocalsIdDeleteData, ThrowOnError>): RequestResult<ApiVocalsIdDeleteResponses, ApiVocalsIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<ApiVocalsIdDeleteResponses, ApiVocalsIdDeleteErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/vocals/{id}',
+    ...options
+});
+
+/**
+ * Retrieves a Vocal resource.
+ *
+ * Retrieves a Vocal resource.
+ */
+export const apiVocalsIdGet = <ThrowOnError extends boolean = false>(options: Options<ApiVocalsIdGetData, ThrowOnError>): RequestResult<ApiVocalsIdGetResponses, ApiVocalsIdGetErrors, ThrowOnError> => (options.client ?? client).get<ApiVocalsIdGetResponses, ApiVocalsIdGetErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/vocals/{id}',
+    ...options
+});
+
+/**
+ * Updates the Vocal resource.
+ *
+ * Updates the Vocal resource.
+ */
+export const apiVocalsIdPatch = <ThrowOnError extends boolean = false>(options: Options<ApiVocalsIdPatchData, ThrowOnError>): RequestResult<ApiVocalsIdPatchResponses, ApiVocalsIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<ApiVocalsIdPatchResponses, ApiVocalsIdPatchErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/api/vocals/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/merge-patch+json',
+        ...options.headers
+    }
 });

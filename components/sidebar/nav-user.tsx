@@ -22,11 +22,12 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { EllipsisVerticalIcon, KeyRound, LogOutIcon } from "lucide-react"
+import { useAuth } from "@/components/auth/auth-provider"
 
 export function NavUser({
-  user,
+  user: initialUser,
 }: {
-  user: {
+  user?: {
     name: string
     email: string
     avatar?: string
@@ -34,6 +35,9 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar()
   const router = useRouter()
+  const { user: authUser, logout } = useAuth()
+  
+  const user = authUser || initialUser || { name: "Usuario", email: "" }
   
   const initials = user.name
     ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase()
@@ -96,7 +100,7 @@ export function NavUser({
           size="icon-sm"
           className="h-9 w-9 group-data-[state=collapsed]:h-8 group-data-[state=collapsed]:w-8 text-sidebar-foreground/70 hover:text-red-400 hover:bg-red-950/20 rounded-md transition-all shrink-0"
           title="Cerrar sesión"
-          onClick={() => router.push("/login")}
+          onClick={logout}
         >
           <LogOutIcon className="size-4" />
         </Button>
