@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle2, Clock, AlertTriangle, FileText } from "lucide-react"
+import { CheckCircle2, Clock, AlertTriangle, FileText, XCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface StatusBadgeProps {
@@ -21,10 +21,15 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
     case "completada":
     case "aprobada":
     case "resuelto":
-    case "activo":
       colorClasses = "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
       Icon = CheckCircle2
       label = status
+      break
+    case "activo":
+    case "a":
+      colorClasses = "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
+      Icon = CheckCircle2
+      label = "Activo"
       break
     case "pendiente":
       colorClasses = "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
@@ -54,6 +59,11 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
       label = status
       break
     case "inactivo":
+    case "i":
+      colorClasses = "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20"
+      Icon = XCircle
+      label = "Inactivo"
+      break
     case "archivado":
     default:
       colorClasses = "bg-muted text-muted-foreground border-muted-foreground/20"

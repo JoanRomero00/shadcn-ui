@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { SiteHeader } from "@/components/layout/site-header"
-import { TableToolbar } from "@/components/table/table-toolbar"
-import { StatusBadge } from "@/components/table/status-badge"
-import { DataTable } from "@/components/table/data-table"
-import { type ColumnDef } from "@tanstack/react-table"
-import { Button } from "@/components/ui/button"
+import * as React from "react";
+import { SiteHeader } from "@/components/layout/site-header";
+import { TableToolbar } from "@/components/table/table-toolbar";
+import { StatusBadge } from "@/components/table/status-badge";
+import { DataTable } from "@/components/table/data-table";
+import { type ColumnDef } from "@tanstack/react-table";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,81 +14,218 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   Plus,
   FileDown,
   Printer,
-  MoreHorizontal,
+  Eye,
   Edit,
   Trash,
   RefreshCw,
   AlertCircle,
   Loader2,
-} from "lucide-react"
-import { toast } from "sonner"
-import { apiPresidenciasGetCollection, type Presidencia } from "@/lib/api"
-import { useDebounce } from "@/hooks/use-debounce"
+} from "lucide-react";
+import { toast } from "sonner";
+import {
+  apiPresidenciasGetCollection,
+  apiPresidenciasPost,
+  apiPresidenciasIdPatch,
+  apiPresidenciasIdDelete,
+  type Presidencia,
+} from "@/lib/api";
+import { useDebounce } from "@/hooks/use-debounce";
+import {
+  CrudFormDialog,
+  type CrudField,
+} from "@/components/dialogs/crud-form-dialog"
+import { CrudDetailDialog } from "@/components/dialogs/crud-detail-dialog";
+import { CrudDeleteDialog } from "@/components/dialogs/crud-delete-dialog";
 
 export default function PresidenciasPage() {
-  const [data, setData] = React.useState<Presidencia[]>([])
-  const [isLoading, setIsLoading] = React.useState(true)
-  const [errorMsg, setErrorMsg] = React.useState<string | null>(null)
+  const [data, setData] = React.useState<Presidencia[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
 
   // Estados para búsqueda y filtrado
-  const [searchTerm, setSearchTerm] = React.useState("")
-  const debouncedSearchTerm = useDebounce(searchTerm, 300)
-  const [estadoFilter, setEstadoFilter] = React.useState("todos")
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const [estadoFilter, setEstadoFilter] = React.useState("todos");
+
+  // Estados para creación y edición
+  const [isCreateOpen, setIsCreateOpen] = React.useState(false);
+  const [isEditOpen, setIsEditOpen] = React.useState(false);
+  const [isDetailOpen, setIsDetailOpen] = React.useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = React.useState(false);
+  const [selectedPresidencia, setSelectedPresidencia] =
+    React.useState<Presidencia | null>(null);
+
+  const presidenciaFields = React.useMemo<CrudField[]>(
+    () => [
+      {
+        name: "tribu",
+        label: "Tribunal / Nombre",
+        type: "text",
+        placeholder: "Ej: Cámara Civil y Comercial Sala I...",
+        required: true,
+      },
+      {
+        name: "codFuero",
+        label: "Código de Fuero",
+        type: "text",
+        placeholder: "Ej: CIV, PEN, LAB...",
+        required: true,
+      },
+      {
+        name: "cantSala",
+        label: "Cantidad de Salas",
+        type: "number",
+        placeholder: "Ej: 1, 2...",
+        required: true,
+        min: 1,
+      },
+      {
+        name: "vocSala",
+        label: "Vocales por Sala",
+        type: "number",
+        placeholder: "Ej: 3, 5...",
+        required: true,
+        min: 1,
+      },
+      {
+        name: "email",
+        label: "Correo Electrónico",
+        type: "email",
+        placeholder: "Ej: camcivil1sfe@justiciasantafe.gov.ar",
+        required: true,
+      },
+      {
+        name: "estado",
+        label: "Estado",
+        type: "select",
+        required: true,
+        defaultValue: "ACTIVO",
+        options: [
+          { label: "Activo", value: "ACTIVO" },
+          { label: "Inactivo", value: "INACTIVO" },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const handleCreate = async (values: any) => {
+    const { error, response } = await apiPresidenciasPost({
+      body: values,
+    });
+    if (error) {
+      toast.error(
+        `Error al crear la presidencia: ${response?.statusText || "Error del servidor"}`,
+      );
+      throw error;
+    }
+    toast.success("Presidencia creada exitosamente.");
+    fetchPresidencias();
+  };
+
+  const handleEdit = async (values: any) => {
+    if (!selectedPresidencia?.id) return;
+    const { error, response } = await apiPresidenciasIdPatch({
+      path: { id: selectedPresidencia.id.toString() },
+      body: values,
+    });
+    if (error) {
+      toast.error(
+        `Error al actualizar la presidencia: ${response?.statusText || "Error del servidor"}`,
+      );
+      throw error;
+    }
+    toast.success("Presidencia actualizada exitosamente.");
+    fetchPresidencias();
+  };
+
+  const handleDelete = async () => {
+    if (!selectedPresidencia?.id) return;
+    const { error, response } = await apiPresidenciasIdDelete({
+      path: { id: selectedPresidencia.id.toString() },
+    });
+    if (error) {
+      toast.error(
+        `Error al eliminar la presidencia: ${response?.statusText || "Error del servidor"}`,
+      );
+      throw error;
+    }
+    toast.success("Presidencia eliminada exitosamente.");
+    fetchPresidencias();
+  };
 
   const fetchPresidencias = React.useCallback(async () => {
-    setIsLoading(true)
-    setErrorMsg(null)
+    setIsLoading(true);
+    setErrorMsg(null);
     try {
-      const { data: resData, error, response } = await apiPresidenciasGetCollection()
+      const {
+        data: resData,
+        error,
+        response,
+      } = await apiPresidenciasGetCollection();
 
       if (error) {
         if (response?.status === 401) {
-          setErrorMsg("No autorizado. Inicie sesión nuevamente.")
+          setErrorMsg("No autorizado. Inicie sesión nuevamente.");
         } else {
-          setErrorMsg(`Error ${response?.status || "desconocido"}: ${response?.statusText || "No se pudieron obtener las presidencias"}`)
+          setErrorMsg(
+            `Error ${response?.status || "desconocido"}: ${response?.statusText || "No se pudieron obtener las presidencias"}`,
+          );
         }
-        return
+        return;
       }
 
       if (resData) {
         // Manejar formatos JSON-LD, array plano o paginados
         if (Array.isArray(resData)) {
-          setData(resData)
-        } else if (typeof resData === "object" && "items" in resData && Array.isArray((resData as any).items)) {
-          setData((resData as any).items)
-        } else if (typeof resData === "object" && "hydra:member" in resData && Array.isArray((resData as any)["hydra:member"])) {
-          setData((resData as any)["hydra:member"])
-        } else if (typeof resData === "object" && "member" in resData && Array.isArray((resData as any)["member"])) {
-          setData((resData as any)["member"])
+          setData(resData);
+        } else if (
+          typeof resData === "object" &&
+          "items" in resData &&
+          Array.isArray((resData as any).items)
+        ) {
+          setData((resData as any).items);
+        } else if (
+          typeof resData === "object" &&
+          "hydra:member" in resData &&
+          Array.isArray((resData as any)["hydra:member"])
+        ) {
+          setData((resData as any)["hydra:member"]);
+        } else if (
+          typeof resData === "object" &&
+          "member" in resData &&
+          Array.isArray((resData as any)["member"])
+        ) {
+          setData((resData as any)["member"]);
         } else {
-          setData([])
+          setData([]);
         }
       }
     } catch (err) {
-      console.error(err)
-      setErrorMsg("Error de conexión. Verifique el backend Symfony.")
+      console.error(err);
+      setErrorMsg("Error de conexión. Verifique el backend Symfony.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [])
+  }, []);
 
   React.useEffect(() => {
-    fetchPresidencias()
-  }, [fetchPresidencias])
+    fetchPresidencias();
+  }, [fetchPresidencias]);
 
   // Limpiar filtros activos
   const handleClearFilters = () => {
-    setSearchTerm("")
-    setEstadoFilter("todos")
-    toast.info("Filtros restablecidos")
-  }
+    setSearchTerm("");
+    setEstadoFilter("todos");
+    toast.info("Filtros restablecidos");
+  };
 
-  const showClearButton = searchTerm !== "" || estadoFilter !== "todos"
+  const showClearButton = searchTerm !== "" || estadoFilter !== "todos";
 
   // Lógica de filtrado en el cliente (búsqueda y estado)
   const filteredData = React.useMemo(() => {
@@ -97,34 +234,27 @@ export default function PresidenciasPage() {
       const matchesEstado =
         estadoFilter === "todos"
           ? true
-          : item.estado?.toLowerCase() === estadoFilter.toLowerCase()
+          : item.estado?.toLowerCase() === estadoFilter.toLowerCase();
 
       // Filtrar por texto (tribunal, código de fuero, o email)
-      const query = debouncedSearchTerm.toLowerCase().trim()
+      const query = debouncedSearchTerm.toLowerCase().trim();
       const matchesSearch =
         query === ""
           ? true
-          : (item.tribu?.toLowerCase().includes(query) || false) ||
-            (item.codFuero?.toLowerCase().includes(query) || false) ||
-            (item.email?.toLowerCase().includes(query) || false)
+          : item.tribu?.toLowerCase().includes(query) ||
+            false ||
+            item.codFuero?.toLowerCase().includes(query) ||
+            false ||
+            item.email?.toLowerCase().includes(query) ||
+            false;
 
-      return matchesEstado && matchesSearch
-    })
-  }, [data, debouncedSearchTerm, estadoFilter])
+      return matchesEstado && matchesSearch;
+    });
+  }, [data, debouncedSearchTerm, estadoFilter]);
 
   // Configuración de las columnas de la tabla
   const columns = React.useMemo<ColumnDef<Presidencia>[]>(
     () => [
-      {
-        accessorKey: "id",
-        header: "ID",
-        size: 80,
-        cell: ({ row }) => (
-          <span className="font-mono text-xs font-semibold text-muted-foreground">
-            #{row.getValue("id")}
-          </span>
-        ),
-      },
       {
         accessorKey: "tribu",
         header: "Tribunal / Presidencia",
@@ -186,60 +316,54 @@ export default function PresidenciasPage() {
       {
         id: "actions",
         header: () => <div className="text-right w-full">Acciones</div>,
-        size: 60,
+        size: 120,
         cell: ({ row }) => (
-          <div className="text-right" onClick={(e) => e.stopPropagation()}>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  className="size-7 cursor-pointer hover:bg-muted/80 rounded-md animate-none"
-                >
-                  <MoreHorizontal className="size-4 text-muted-foreground" />
-                  <span className="sr-only">Acciones</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[160px] rounded-lg">
-                <DropdownMenuLabel className="text-[10px] uppercase font-bold text-muted-foreground">
-                  Operaciones
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="cursor-pointer gap-2 text-xs"
-                  onClick={() =>
-                    toast.info(`Detalle: ${row.original.tribu}`)
-                  }
-                >
-                  Ver Detalles
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="cursor-pointer gap-2 text-xs"
-                  onClick={() =>
-                    toast.info("Edición deshabilitada temporalmente.")
-                  }
-                >
-                  <Edit className="size-3.5 text-muted-foreground" />
-                  Editar
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="cursor-pointer gap-2 text-xs text-red-650 dark:text-red-400 focus:text-red-600 dark:focus:text-red-400"
-                  onClick={() =>
-                    toast.error("No cuenta con permisos para eliminar presidencias.")
-                  }
-                >
-                  <Trash className="size-3.5" />
-                  Eliminar
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <div
+            className="flex items-center justify-end gap-1"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="size-8 cursor-pointer hover:bg-muted rounded-lg text-muted-foreground hover:text-foreground transition-all duration-200"
+              title="Ver Detalles"
+              onClick={() => {
+                setSelectedPresidencia(row.original)
+                setIsDetailOpen(true)
+              }}
+            >
+              <Eye className="size-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="size-8 cursor-pointer hover:bg-muted rounded-lg text-muted-foreground hover:text-foreground transition-all duration-200"
+              title="Editar"
+              onClick={() => {
+                setSelectedPresidencia(row.original);
+                setIsEditOpen(true);
+              }}
+            >
+              <Edit className="size-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="size-8 cursor-pointer hover:bg-destructive/10 text-muted-foreground hover:text-destructive rounded-lg transition-all duration-200"
+              title="Eliminar"
+              onClick={() => {
+                setSelectedPresidencia(row.original)
+                setIsDeleteOpen(true)
+              }}
+            >
+              <Trash className="size-4" />
+            </Button>
           </div>
         ),
       },
     ],
-    []
-  )
+    [],
+  );
 
   // Filtros de barra de herramientas
   const toolbarFilters = [
@@ -254,7 +378,7 @@ export default function PresidenciasPage() {
       ],
       onChange: setEstadoFilter,
     },
-  ]
+  ];
 
   // Exportaciones
   const exportActions = [
@@ -268,7 +392,7 @@ export default function PresidenciasPage() {
       icon: <Printer className="size-3.5" />,
       onClick: () => window.print(),
     },
-  ]
+  ];
 
   return (
     <>
@@ -276,20 +400,9 @@ export default function PresidenciasPage() {
         title="Presidencias"
         action={
           <div className="flex items-center gap-2">
+
             <Button
-              variant="outline"
-              size="icon-sm"
-              onClick={fetchPresidencias}
-              disabled={isLoading}
-              className="h-8 w-8 cursor-pointer rounded-lg border border-border"
-              title="Recargar datos"
-            >
-              <RefreshCw className={`size-3.5 ${isLoading ? "animate-spin" : ""}`} />
-            </Button>
-            <Button
-              onClick={() =>
-                toast.info("Formulario de creación de presidencias en desarrollo.")
-              }
+              onClick={() => setIsCreateOpen(true)}
               className="cursor-pointer gap-2 bg-primary text-primary-foreground hover:bg-primary/95 rounded-lg px-3 h-8 text-xs font-semibold"
             >
               <Plus className="size-3.5" />
@@ -316,10 +429,17 @@ export default function PresidenciasPage() {
           <div className="flex items-center gap-3 bg-destructive/15 border border-destructive/25 text-destructive p-4 rounded-xl text-sm max-w-lg mx-auto my-6 shadow-sm w-full">
             <AlertCircle className="h-5 w-5 shrink-0" />
             <div className="flex-1">
-              <p className="font-medium text-destructive-foreground">Error de carga</p>
+              <p className="font-medium text-destructive-foreground">
+                Error de carga
+              </p>
               <p className="text-xs opacity-90">{errorMsg}</p>
             </div>
-            <Button size="sm" variant="outline" className="border-destructive/30 hover:bg-destructive/10 text-destructive font-semibold" onClick={fetchPresidencias}>
+            <Button
+              size="sm"
+              variant="outline"
+              className="border-destructive/30 hover:bg-destructive/10 text-destructive font-semibold"
+              onClick={fetchPresidencias}
+            >
               Reintentar
             </Button>
           </div>
@@ -343,6 +463,50 @@ export default function PresidenciasPage() {
           )
         )}
       </div>
+
+      <CrudFormDialog
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)}
+        title="Nueva Presidencia"
+        fields={presidenciaFields}
+        onSubmit={handleCreate}
+        submitLabel="Crear"
+      />
+
+      <CrudFormDialog
+        isOpen={isEditOpen}
+        onClose={() => {
+          setIsEditOpen(false);
+          setSelectedPresidencia(null);
+        }}
+        title="Editar Presidencia"
+        fields={presidenciaFields}
+        initialValues={selectedPresidencia}
+        onSubmit={handleEdit}
+        submitLabel="Guardar Cambios"
+      />
+
+      <CrudDetailDialog
+        isOpen={isDetailOpen}
+        onClose={() => {
+          setIsDetailOpen(false)
+          setSelectedPresidencia(null)
+        }}
+        title="Detalles de la Presidencia"
+        fields={presidenciaFields}
+        data={selectedPresidencia}
+      />
+
+      <CrudDeleteDialog
+        isOpen={isDeleteOpen}
+        onClose={() => {
+          setIsDeleteOpen(false)
+          setSelectedPresidencia(null)
+        }}
+        title="Eliminar Presidencia"
+        itemName={selectedPresidencia ? selectedPresidencia.tribu || "" : ""}
+        onSubmit={handleDelete}
+      />
     </>
-  )
+  );
 }

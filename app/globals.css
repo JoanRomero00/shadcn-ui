@@ -139,5 +139,6 @@
   }
   html {
     @apply font-sans;
+    font-size: 112.5%; /* Sube el base de 16px a 18px para mejorar legibilidad global */
   }
 }

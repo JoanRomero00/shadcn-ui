@@ -15,10 +15,16 @@ import {
 } from "lucide-react"
 import escudo from "@/public/escudo.gif"
 
+export interface NavSubItem {
+  title: string
+  url: string
+}
+
 export interface NavItem {
   title: string
   url: string
   icon: React.ReactNode
+  items?: NavSubItem[]
 }
 
 export interface DocumentItem {
@@ -78,21 +84,6 @@ export const siteConfig: SiteConfig = {
       url: "/expedientes",
       icon: <Folder className="size-4" />,
     },
-    {
-      title: "Fueros",
-      url: "/fueros",
-      icon: <Scale className="size-4" />,
-    },
-    {
-      title: "Tipos de Marca",
-      url: "/tipos-marca",
-      icon: <Tags className="size-4" />,
-    },
-    {
-      title: "Presidencias",
-      url: "/presidencias",
-      icon: <Building2 className="size-4" />,
-    },
   ],
   documents: [
     {
@@ -137,6 +128,24 @@ export const siteConfig: SiteConfig = {
       title: "Configuración",
       url: "/settings",
       icon: <Settings2 className="size-4" />,
+      items: [
+        {
+          title: "General",
+          url: "/settings",
+        },
+        {
+          title: "Fueros",
+          url: "/fueros",
+        },
+        {
+          title: "Tipos de Marca",
+          url: "/tipos-marca",
+        },
+        {
+          title: "Presidencias",
+          url: "/presidencias",
+        },
+      ],
     },
     {
       title: "Manuales",
